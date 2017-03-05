@@ -15,7 +15,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	private void init(){
 		isMoving = false;
 		currentSpeed = 0;
-		defaultSpeed = 1f;
+		defaultSpeed = 15f;
 		pointPosition = -1;
 	}
 
@@ -46,8 +46,10 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		pointPosition++;
 		if (pointPosition < targetPoint.Length) {
 			currentPoint = targetPoint [pointPosition];
-			transform.LookAt (currentPoint.transform);
-			iTween.MoveTo (gameObject, iTween.Hash ("position", currentPoint.transform.position, "speed", currentSpeed, "EaseType", iTween.EaseType.easeInOutSine));
+			SmoothLook (currentPoint.transform);
+//			transform.LookAt (currentPoint.transform);
+//			iTween.MoveTo (gameObject, iTween.Hash ("position", currentPoint.transform.position, "speed", currentSpeed, "EaseType", iTween.EaseType.spring));
+			transform.Translate((currentPoint.transform.position - transform.position)*currentSpeed*Time.deltaTime);
 		}
 	}
 
@@ -73,6 +75,11 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	public void OnTriggerEnter(Collider collider){
 		Debug.Log ("OnTriggerEnter");
+	}
+		
+	private void SmoothLook(Transform target){
+//		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime);
+		iTween.LookTo(gameObject, iTween.Hash("looktarget", target , "time", 6f));
 	}
 
 }

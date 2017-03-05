@@ -4,7 +4,7 @@ using System.Collections;
 public class TargetPoint : MonoBehaviour {
 
 	public bool isCheckPoint;
-
+	public int speed;
 
 	// Use this for initialization
 	void Start () {

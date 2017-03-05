@@ -8,5 +8,6 @@ public interface CarBehaviorInterface{
 	void showPopupInfo ();
 	void hidePopupInfo ();
 	void startEngine ();
+	void speedChange (float nextSpeed, float celerate);
 
 }

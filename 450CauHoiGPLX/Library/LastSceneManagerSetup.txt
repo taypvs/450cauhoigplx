@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Custom Driver Scene.unity
+- path: Assets/Scenes/Test Simulation Scene.unity
   isLoaded: 1
   isActive: 1

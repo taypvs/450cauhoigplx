@@ -1,5 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< Updated upstream
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_SwipeController.cs">
     <Files>
       <File FileName="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_TimeManager.cs" Line="21" Column="60" />
@@ -10,6 +11,14 @@
       <File FileName="Assets\Scripts\Interfaces\TouchListenerInterface.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Common\UtilsConstanst.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\WheelScripts\CarScript.cs" Line="116" Column="3" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenes/TestSimalationScene/TestSimulate_SwipeController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Common/CommonMethods.cs" Line="6" Column="40" />
+      <File FileName="Assets/Scripts/Interfaces/CarBehaviorInterface.cs" Line="11" Column="51" />
+      <File FileName="Assets/Scripts/Scenes/TestSimalationScene/TestSimulate_TimeManager.cs" Line="20" Column="24" />
+      <File FileName="Assets/Scripts/Scenes/TestSimalationScene/TestSimulate_SwipeController.cs" Line="16" Column="17" />
+>>>>>>> Stashed changes
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

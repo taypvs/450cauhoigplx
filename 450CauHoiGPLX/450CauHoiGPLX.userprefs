@@ -1,17 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WheelScripts/TargetPoint.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_SwipeController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Common/TimeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Common/CommonMethods.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Interfaces/CarBehaviorInterface.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WheelScripts/TargetPoint.cs" Line="8" Column="14" />
-      <File FileName="Assets/Scripts/WheelScripts/CarScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Standard Assets/Utility/SmoothFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Buttons/CarSimulation_Screen_Btn.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Common/SmoothLookAt.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Scenes/CarSimulationScene/SceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Plugins/Pixelplacement/iTween/iTween.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_TimeManager.cs" Line="21" Column="60" />
+      <File FileName="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_SwipeController.cs" Line="30" Column="2" />
+      <File FileName="Assets\Scripts\Common\TouchUtils.cs" Line="24" Column="43" />
+      <File FileName="Assets\Scripts\Common\CommonMethods.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\Pixelplacement\iTween\iTween.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Interfaces\TouchListenerInterface.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Common\UtilsConstanst.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WheelScripts\CarScript.cs" Line="116" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

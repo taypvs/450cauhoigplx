@@ -7,7 +7,7 @@ public class GroupQuestion : MonoBehaviour {
 	public string id;
 	public string name;
 	public string position;
-	public string type_id; // 0 : Đề câu hỏi ôn tập, 1 : Đề thi thử
+	public string type; // 0 : Đề câu hỏi ôn tập, 1 : Đề thi thử
 	public string count; 
 	public Question[] questions;
 
@@ -19,7 +19,7 @@ public class GroupQuestion : MonoBehaviour {
 		id = jsonObject ["id"].Str;
 		name = jsonObject ["name"].Str;
 		position = jsonObject ["position"].Str;
-		type_id = jsonObject ["type_id"].Str;
+		type = jsonObject ["type"].Str;
 		count = jsonObject ["count"].Str;
 		JSONArray questionArray = jsonObject ["questions"].Array;
 		for(int i = 0; i < questionArray.Length; i++){

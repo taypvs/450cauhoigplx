@@ -1,5 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< Updated upstream
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Scenes\MainScene\MainScene_ApiQuestionsLoader_Controller.cs">
     <Files>
       <File FileName="Assets\Scripts\NetworkService\ListAllQuestionsWs.cs" Line="14" Column="3" />
@@ -14,6 +15,20 @@
       <File FileName="Assets\Scripts\Scenes\MainScene\MainScene_ApiQuestionsLoader_Controller.cs" Line="28" Column="1" />
       <File FileName="Assets\Scripts\Common\CommonMethods.cs" Line="7" Column="10" />
       <File FileName="Assets\Scripts\Models\AllLevel.cs" Line="3" Column="23" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Models/Question.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Common/CommonMethods.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Interfaces/CarBehaviorInterface.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scenes/TestSimalationScene/TestSimulate_TimeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scenes/TestSimalationScene/TestSimulate_SwipeController.cs" Line="1" Column="1" />
+      <File FileName="../../../../../PunchLight/Punch Light/Assets/Scripts/JsonHandler/JsonParser.cs" Line="1" Column="1" />
+      <File FileName="../../../../../PunchLight/Punch Light/Assets/Scripts/JsonHandler/JsonUtils.cs" Line="1" Column="1" />
+      <File FileName="../../../../../PunchLight/Punch Light/Assets/Scripts/Models/User.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Models/Answer.cs" Line="1" Column="1" />
+      <File FileName="../../../../../PunchLight/Punch Light/Assets/Scripts/Models/UserLateByMonth.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Models/Question.cs" Line="6" Column="2" />
+>>>>>>> Stashed changes
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

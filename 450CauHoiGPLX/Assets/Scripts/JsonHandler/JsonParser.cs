@@ -25,4 +25,24 @@ public class JsonParser {
 
 		return jsonReturn;
 	}
+
+	public static string groupQuestionToJson(GroupQuestion groupQuestion){
+		string jsonReturn = "";
+		jsonReturn += 
+			"{\"id\":\"" + groupQuestion.id + "\"," +
+			"\"name\":\"" + groupQuestion.name + "\"," +
+			"\"position\":\"" + groupQuestion.position + "\"," +
+			"\"type\":\"" + groupQuestion.type + "\"," +
+			"\"count\":\"" + groupQuestion.count + "\"," +
+			"\"questions\":[";
+		for(int i = 0; i<groupQuestion.questions.Length; i++){
+			jsonReturn += questionToJson(groupQuestion.questions[i]);
+			if(i<(groupQuestion.questions.Length - 1 ))
+				jsonReturn += ",";
+		}
+
+		jsonReturn += "]}";
+
+		return jsonReturn;
+	}
 }

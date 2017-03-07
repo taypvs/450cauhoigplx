@@ -31,4 +31,8 @@ public class Answer : MonoBehaviour {
 		correct = jsonObject ["correct"].Str;
 		question_id = jsonObject ["question_id"].Str;
 	}
+
+	public string toString() {
+		return JsonUtility.ToJson (this);
+	}
 }

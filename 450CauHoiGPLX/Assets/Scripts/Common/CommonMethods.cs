@@ -26,4 +26,7 @@ public static class CommonMethods {
 		return Encoding.UTF8.GetString(utf8Bytes,0,utf8Bytes.Length);
 	}
 
+	public static string getLevelString(string fullText){
+		return fullText.Split (' ')[1];
+	}
 }

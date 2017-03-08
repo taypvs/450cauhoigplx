@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Boomlagoon.JSON;
+using UnityEngine.UI;
 
 public class MainScene_ApiQuestionsLoader_Controller : MonoBehaviour {
 
-	private System.Action onComplete;
 	public ListAllQuestionsWs listAllQuestionWs;
+	public Text debugText;
+	private System.Action onComplete;
 
 	// Use this for initialization
 	void Start () {
+		debugText.text = PreferencesUtils.getCurrentLevelSelected ();
 		onComplete = onCompleteApi;
 		listAllQuestionWs.initialize();
 		listAllQuestionWs.doGetListQuestion (onComplete);
@@ -22,6 +25,7 @@ public class MainScene_ApiQuestionsLoader_Controller : MonoBehaviour {
 	private void onCompleteApi(){
 		JSONArray jsonArray = JSONArray.Parse (listAllQuestionWs.httpApiLoader.results);
 		AllLevel allLv = new AllLevel(jsonArray);
+		PreferencesUtils.setCurrentLevelSelected ("A1");
 		Debug.Log ("Result : " + listAllQuestionWs.httpApiLoader.results);
 	}
 }

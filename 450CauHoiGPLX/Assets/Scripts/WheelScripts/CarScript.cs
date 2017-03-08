@@ -112,7 +112,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	{
 		currentSpeed = newValue;
 
-		Debug.Log ("speedChange - Speed : " + currentSpeed);
 	}
 		
 	private void SmoothLook(Transform target){
@@ -122,7 +121,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	IEnumerator waitForSeconds(float seconds) {
 		yield return new WaitForSeconds(seconds);
-		Debug.Log ("speedChange - defaultSpeed");
 		speedChange(defaultSpeed, defaultCelerate);
 	}
 

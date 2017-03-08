@@ -6,9 +6,25 @@ public class PreferencesUtils {
 	public static string LEVEL_DRIVER_TYPE_B = "LEVEL_DRIVER_TYPE_B";
 	public static string LEVEL_DRIVER_TYPE_FC = "LEVEL_DRIVER_TYPE_FC";
 
+	public static string LEVEL_DRIVER_TYPE = "LEVEL_DRIVER_TYPE_";
 	public static string CURRENT_LEVEL_SELECTED = "CURRENT_LEVEL_SELECTED";
 
-	public static void saveString(string key, string value){
+	public static void setCurrentLevelSelected(string value){
+		PlayerPrefs.SetString (CURRENT_LEVEL_SELECTED, value);
+	}
+
+	public static string getCurrentLevelSelected(){
 		
+		return PlayerPrefs.GetString (CURRENT_LEVEL_SELECTED);
+	}
+
+	public static void saveJsonGroupQuestionInLevel(string level, string value){
+		string saveLevel = LEVEL_DRIVER_TYPE + level;
+		PlayerPrefs.SetString (saveLevel, value);
+	}
+
+	public static string getJsonGroupQuestionInLevel(string level){
+		string savedLevel = LEVEL_DRIVER_TYPE + level;
+		return PlayerPrefs.GetString (savedLevel);
 	}
 }

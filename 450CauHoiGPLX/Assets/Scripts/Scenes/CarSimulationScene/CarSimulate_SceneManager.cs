@@ -15,5 +15,8 @@ public class CarSimulate_SceneManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		text.text = car.GetComponent<CarScript> ().currentSpeed.ToString() + " Km/h";
+
+		if (Input.GetKeyDown (KeyCode.Escape))
+			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Main Scene", 230, 0.3f);
 	}
 }

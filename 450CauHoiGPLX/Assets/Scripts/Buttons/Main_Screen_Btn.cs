@@ -17,6 +17,11 @@ public class Main_Screen_Btn : MonoBehaviour {
 
 	public void onClickLoadCarSimulateScene(){
 		Debug.Log ("onClickLoadCarSimulateScene");
-		sceneLoader.GetComponent<SceneLoader> ().loadLevelFadeIn ("CustomDriverScene", 250, 0.3f);
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("CustomDriverScene", 250, 0.3f);
+	}
+
+	public void onClickLoadListTestsScene(){
+		Debug.Log ("onClickLoadCarSimulateScene");
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 250, 0.3f);
 	}
 }

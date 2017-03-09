@@ -69,8 +69,11 @@
      <Compile Include="Assets\Scripts\NetworkService\HttpCommon\LoadAPIListenner.cs" />
      <Compile Include="Assets\Scripts\NetworkService\ListAllQuestionsWs.cs" />
      <Compile Include="Assets\Scripts\Scene Affects\SceneLoader.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Base\HeaderTitle.cs" />
      <Compile Include="Assets\Scripts\Scenes\CarSimulationScene\CarSimulate_SceneManager.cs" />
+     <Compile Include="Assets\Scripts\Scenes\ListTestsScene\ListTests_Sceen_Manager.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainScene\MainScene_ApiQuestionsLoader_Controller.cs" />
+     <Compile Include="Assets\Scripts\Scenes\MainScene\MainScene_Screen_Manager.cs" />
      <Compile Include="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_SwipeController.cs" />
      <Compile Include="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_TimeManager.cs" />
      <Compile Include="Assets\Scripts\WheelScripts\CarScript.cs" />

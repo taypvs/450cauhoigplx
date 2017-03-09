@@ -8,17 +8,8 @@ public class Answer : MonoBehaviour {
 	public string text;
 	public string position;
 	public string correct;
+	public string choose;
 	public string question_id;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	public Answer(){
 	
@@ -30,6 +21,9 @@ public class Answer : MonoBehaviour {
 		position = jsonObject ["position"].Str;
 		correct = jsonObject ["correct"].Str;
 		question_id = jsonObject ["question_id"].Str;
+		choose = "0";
+		if(jsonObject.ContainsKey ("choose"))
+			choose = jsonObject ["choose"].Str;
 	}
 
 	public string toString() {

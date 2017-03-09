@@ -11,6 +11,7 @@ public class MainScene_ApiQuestionsLoader_Controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Screen.fullScreen = false;
 		debugText.text = PreferencesUtils.getCurrentLevelSelected ();
 		onComplete = onCompleteApi;
 		listAllQuestionWs.initialize();

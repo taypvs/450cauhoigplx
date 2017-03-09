@@ -18,12 +18,12 @@ public class PreferencesUtils {
 		return PlayerPrefs.GetString (CURRENT_LEVEL_SELECTED);
 	}
 
-	public static void saveJsonGroupQuestionInLevel(string level, string value){
+	public static void saveJsonGroupQuestionsInLevel(string level, string value){
 		string saveLevel = LEVEL_DRIVER_TYPE + level;
 		PlayerPrefs.SetString (saveLevel, value);
 	}
 
-	public static string getJsonGroupQuestionInLevel(string level){
+	public static string getJsonGroupQuestionsInLevel(string level){
 		string savedLevel = LEVEL_DRIVER_TYPE + level;
 		return PlayerPrefs.GetString (savedLevel);
 	}

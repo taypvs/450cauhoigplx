@@ -21,7 +21,7 @@ public class SceneLoader : MonoBehaviour {
 		onLoadFadeIn (0, 0.3f);
 	}
 
-	public void loadLevelFadeIn(string level, float value, float time){
+	public void doLoadLevelFadeIn(string level, float value, float time){
 		Debug.Log ("loadLevelFadeIn : " + level);
 		levelLoad = level;
 		oncloseFadeOut (value, time);

@@ -5,7 +5,7 @@ using Boomlagoon.JSON;
 public class LevelQuestion : MonoBehaviour {
 
 	public string id;
-	public string name;
+	public string lName;
 	public string count; 
 	public GroupQuestion[] groupQuestions;
 
@@ -15,11 +15,12 @@ public class LevelQuestion : MonoBehaviour {
 
 	public LevelQuestion(JSONObject jsonObject){
 		id = jsonObject ["id"].Str;
-		name = jsonObject ["name"].Str;
+		lName = jsonObject ["name"].Str;
 		count = jsonObject ["count"].Str;
 		JSONArray groupQuestionArray = jsonObject ["groups"].Array;
 		for(int i = 0; i < groupQuestionArray.Length; i++){
 			GroupQuestion groupQuestion = new GroupQuestion (groupQuestionArray[i].Obj);
+			Debug.Log ("groupQuestion name : " groupQuestion.gName);
 			addGroupQuestion (groupQuestion, groupQuestionArray.Length, i);
 		}
 	}

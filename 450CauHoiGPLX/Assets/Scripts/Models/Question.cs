@@ -5,9 +5,10 @@ using Boomlagoon.JSON;
 public class Question : MonoBehaviour {
 
 	public string id;
-	public string name;
+	public string qName;
 	public string image;
 	public string position;
+	public string result; // 0 = not yet, 1 = wrong, 2 = right
 	public Answer[] answers;
 
 	public Question(){
@@ -16,9 +17,12 @@ public class Question : MonoBehaviour {
 
 	public Question(JSONObject jsonObject){
 		id = jsonObject ["id"].Str;
-		name = jsonObject ["name"].Str;
+		qName = jsonObject ["name"].Str;
 		image = jsonObject ["image"].Str;
 		position = jsonObject ["position"].Str;
+		result = "null";
+		if(jsonObject.ContainsKey ("result"))
+			result = jsonObject ["result"].Str;
 		JSONArray answerArray = jsonObject ["answers"].Array;
 		for(int i = 0; i < answerArray.Length; i++){
 			Answer answer = new Answer (answerArray[i].Obj);

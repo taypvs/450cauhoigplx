@@ -26,6 +26,7 @@ public class MainScene_ApiQuestionsLoader_Controller : MonoBehaviour {
 	private void onCompleteApi(){
 		JSONArray jsonArray = JSONArray.Parse (listAllQuestionWs.httpApiLoader.results);
 		AllLevel allLv = new AllLevel(jsonArray);
+		debugText.text = "onCompleteApi => " + allLv.levels[0].lName;
 		PreferencesUtils.setCurrentLevelSelected ("A1");
 		Debug.Log ("Result : " + listAllQuestionWs.httpApiLoader.results);
 	}

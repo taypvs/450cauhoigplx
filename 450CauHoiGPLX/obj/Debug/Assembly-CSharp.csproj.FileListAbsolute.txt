@@ -17,5 +17,6 @@ E:\Freelance\450 Cau hoi GPLX\GPLXSource\450cauhoigplx\450CauHoiGPLX\Temp\bin\De
 E:\Freelance\450 Cau hoi GPLX\GPLXSource\450cauhoigplx\450CauHoiGPLX\Temp\bin\Debug\UnityEditor.xml
 E:\Freelance\450 Cau hoi GPLX\GPLXSource\450cauhoigplx\450CauHoiGPLX\Temp\bin\Debug\UnityEngine.UI.xml
 E:\Freelance\450 Cau hoi GPLX\GPLXSource\450cauhoigplx\450CauHoiGPLX\Temp\bin\Debug\UnityEngine.Networking.xml
+E:\Freelance\450 Cau hoi GPLX\GPLXSource\450cauhoigplx\450CauHoiGPLX\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 E:\Freelance\450 Cau hoi GPLX\GPLXSource\450cauhoigplx\450CauHoiGPLX\obj\Debug\Assembly-CSharp.dll
 E:\Freelance\450 Cau hoi GPLX\GPLXSource\450cauhoigplx\450CauHoiGPLX\obj\Debug\Assembly-CSharp.pdb

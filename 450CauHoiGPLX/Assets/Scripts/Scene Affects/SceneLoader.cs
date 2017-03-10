@@ -53,7 +53,6 @@ public class SceneLoader : MonoBehaviour {
 	}
 
 	public void fadeOnUpdateCallBack(int newValue){
-		Debug.Log (newValue);
 		newFadeColor = new Color32(0, 0, 0, byte.Parse(newValue.ToString()));
 		fadeLayout.GetComponent<Image> ().color = newFadeColor;
 	}

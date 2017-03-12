@@ -3,8 +3,10 @@ using System.Collections;
 
 public class CarSimulation_Screen_Btn : MonoBehaviour {
 
-	public GameObject car;
-
+	public GameObject mainCar;
+	public AudioSource soundStart;
+	public GameObject car1;
+	public GameObject car2;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,7 +18,10 @@ public class CarSimulation_Screen_Btn : MonoBehaviour {
 	}
 
 	public void onClickKeepDriving(){
-		car.GetComponent<CarScript> ().moveToNextPoint ();
+		mainCar.GetComponent<CarScript> ().startMoving ();
+		car1.GetComponent<CarScript> ().startMoving ();
+		car2.GetComponent<CarScript> ().startMoving ();
+		soundStart.Play ();
 		transform.parent.gameObject.SetActive (false);
 	}
 }

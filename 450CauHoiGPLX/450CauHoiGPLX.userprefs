@@ -1,15 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Scenes\MainScene\MainScene_ApiQuestionsLoader_Controller.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WheelScripts/BoxFollow.cs">
     <Files>
-      <File FileName="Assets\Scripts\Common\UtilsConstanst.cs" Line="25" Column="4" />
-      <File FileName="Assets\Scripts\Scenes\ListTestsScene\ListTests_Sceen_Manager.cs" Line="30" Column="17" />
-      <File FileName="Assets\Scripts\Scenes\MainScene\MainScene_ApiQuestionsLoader_Controller.cs" Line="30" Column="41" />
-      <File FileName="Assets\Scripts\Scene Affects\SceneLoader.cs" Line="29" Column="2" />
-      <File FileName="Assets\Scripts\Models\GroupQuestion.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Scenes\CarSimulationScene\CarSimulate_SceneManager.cs" Line="20" Column="89" />
-      <File FileName="Assets\Scripts\Scenes\MainScene\MainScene_Screen_Manager.cs" Line="8" Column="3" />
-      <File FileName="Assets\Scripts\NetworkService\HttpCommon\HttpApiLoader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/JsonHandler/JsonParser.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Models/GroupQuestion.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scene Affects/SceneLoader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scenes/CarSimulationScene/CarSimulate_SceneManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WheelScripts/CarScript.cs" Line="132" Column="119" />
+      <File FileName="Assets/Scripts/Buttons/CarSimulation_Screen_Btn.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WheelScripts/BoxFollow.cs" Line="20" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

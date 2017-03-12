@@ -6,8 +6,11 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	public GameObject[] targetPoint;
 	public GameObject popUp;
 	public float currentSpeed;
+	public AudioSource finishSound;
+	public bool isMainCar;
+	public float defaultSpeed;
+	public float turnRate;
 
-	private float defaultSpeed;
 	private bool isMoving;
 	private int pointPosition;
 	private float speedRate;
@@ -15,12 +18,11 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	private const float defaultCelerate = 1f;
 	private const float fastCelerate = 0.5f;
-	private const float slowCelerate = 1.5f;
+	private const float slowCelerate = 1.2f;
 
 	private void init(){
 		isMoving = false;
 		currentSpeed = 0;
-		defaultSpeed = 15f;
 		pointPosition = -1;
 		speedRate = 0.5f;
 	}
@@ -33,30 +35,34 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	
 	// Update is called once per frame
 	void Update () {
-		if (CommonMethods.distanceToPoint (transform.position, currentPoint.transform.position) < 0.3f && isMoving) {
-			if (currentPoint.GetComponent<TargetPoint> ().isCheckPoint||currentPoint.GetComponent<TargetPoint> ().isStopPoint) {
-				stop ();
-				if(currentPoint.GetComponent<TargetPoint> ().isCheckPoint)
+		if (currentPoint != null) {
+			if (CommonMethods.distanceToPoint (transform.position, currentPoint.transform.position) < 0.3f && isMoving) {
+				if (currentPoint.GetComponent<TargetPoint> ().isCheckPoint) {
+					pause ();
 					showPopupInfo ();
-			} 
-			else if(currentPoint.GetComponent<TargetPoint> ().isWaitPoint){
-				StartCoroutine(waitForSeconds (currentPoint.GetComponent<TargetPoint> ().waitingTime));
-				moveToNextPoint ();
-			}
-			else {
-				moveToNextPoint ();
+				} else if (currentPoint.GetComponent<TargetPoint> ().isStopPoint) {
+					stop ();
+					moveToNextPoint ();
+				}
+				else if (currentPoint.GetComponent<TargetPoint> ().isWaitPoint) {
+					StartCoroutine (waitForSeconds (currentPoint.GetComponent<TargetPoint> ().waitingTime));
+					moveToNextPoint ();
+				} else {
+					moveToNextPoint ();
+				}
 			}
 		}
 
 		// Car driving
-		if(isMoving)
-			transform.Translate((currentPoint.transform.position - transform.position).normalized*currentSpeed*speedRate*Time.deltaTime);
+		if (isMoving) {
+			transform.Translate ((currentPoint.transform.position - transform.position).normalized * currentSpeed * speedRate * Time.deltaTime);
+		}
 	}
 
 	public void startMoving(){
 		isMoving = true;
-//		currentSpeed = defaultSpeed;
-		speedChange (defaultSpeed, slowCelerate);
+		currentSpeed = 5;
+		speedChange (currentSpeed, slowCelerate);
 		moveToNextPoint ();
 	}
 	public void moveToNextPoint (){
@@ -67,7 +73,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 			if(currentPoint.GetComponent<TargetPoint>().speed!=0)
 				speedChange(currentPoint.GetComponent<TargetPoint>().speed, defaultCelerate);
 			else
-				speedChange(currentPoint.GetComponent<TargetPoint>().speed, fastCelerate);
+				speedChange(currentPoint.GetComponent<TargetPoint>().speed, slowCelerate);
 		}
 		if (pointPosition < targetPoint.Length) {
 			currentPoint = targetPoint [pointPosition];
@@ -83,8 +89,15 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		}
 	}
 
-	public void stop (){
+
+	public void pause(){
 		isMoving = false;
+	}
+	public void stop (){
+		if(!isMainCar)
+			isMoving = false;
+		else
+			finishSound.Play ();
 	}
 
 	public void showPopupInfo (){
@@ -116,7 +129,8 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		
 	private void SmoothLook(Transform target){
 //		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime);
-		iTween.LookTo(gameObject, iTween.Hash("looktarget", target , "time", 5f));
+		iTween.LookTo(gameObject.transform.Find("Root").gameObject, iTween.Hash("looktarget", target , "time", 0.4f*turnRate, "easeType", iTween.EaseType.linear));
+
 	}
 
 	IEnumerator waitForSeconds(float seconds) {

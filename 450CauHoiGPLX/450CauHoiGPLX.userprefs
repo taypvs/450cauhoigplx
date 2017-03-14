@@ -1,14 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WheelScripts/BoxFollow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UIElementHandler/AnswerLayoutHandler.cs">
     <Files>
+      <File FileName="Assets/Scripts/Scenes/ListTestsScene/ListTests_Sceen_Manager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/JsonHandler/JsonParser.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Models/GroupQuestion.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Scene Affects/SceneLoader.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Scenes/CarSimulationScene/CarSimulate_SceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WheelScripts/CarScript.cs" Line="132" Column="119" />
-      <File FileName="Assets/Scripts/Buttons/CarSimulation_Screen_Btn.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/WheelScripts/BoxFollow.cs" Line="20" Column="22" />
+      <File FileName="Assets/Scripts/NetworkService/ListAllQuestionsWs.cs" Line="13" Column="43" />
+      <File FileName="Assets/Scripts/Common/PreferencesUtils.cs" Line="36" Column="57" />
+      <File FileName="Assets/Scripts/UIElementHandler/AnswerLayoutHandler.cs" Line="14" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

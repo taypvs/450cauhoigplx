@@ -51,6 +51,7 @@
      <Compile Include="Assets\RoadTool\Scripts\RoadMath.cs" />
      <Compile Include="Assets\RoadTool\Scripts\RoadUtils.cs" />
      <Compile Include="Assets\Scripts\Buttons\CarSimulation_Screen_Btn.cs" />
+     <Compile Include="Assets\Scripts\Buttons\List_Tests_Screen_Btn.cs" />
      <Compile Include="Assets\Scripts\Buttons\Main_Screen_Btn.cs" />
      <Compile Include="Assets\Scripts\Common\CommonMethods.cs" />
      <Compile Include="Assets\Scripts\Common\PreferencesUtils.cs" />
@@ -76,6 +77,7 @@
      <Compile Include="Assets\Scripts\Scenes\MainScene\MainScene_Screen_Manager.cs" />
      <Compile Include="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_SwipeController.cs" />
      <Compile Include="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_TimeManager.cs" />
+     <Compile Include="Assets\Scripts\UIElementHandler\AnswerLayoutHandler.cs" />
      <Compile Include="Assets\Scripts\WheelScripts\BoxFollow.cs" />
      <Compile Include="Assets\Scripts\WheelScripts\CarMovementRoot.cs" />
      <Compile Include="Assets\Scripts\WheelScripts\CarScript.cs" />

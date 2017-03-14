@@ -8,6 +8,7 @@ public class PreferencesUtils {
 
 	public static string LEVEL_DRIVER_TYPE = "LEVEL_DRIVER_TYPE_";
 	public static string CURRENT_LEVEL_SELECTED = "CURRENT_LEVEL_SELECTED";
+	public static string CURRENT_GROUP_QUESTION_SELECTED = "CURRENT_GROUP_QUESTION_SELECTED";
 
 	public static void setCurrentLevelSelected(string value){
 		PlayerPrefs.SetString (CURRENT_LEVEL_SELECTED, value);
@@ -26,5 +27,13 @@ public class PreferencesUtils {
 	public static string getJsonGroupQuestionsInLevel(string level){
 		string savedLevel = LEVEL_DRIVER_TYPE + level;
 		return PlayerPrefs.GetString (savedLevel);
+	}
+
+	public static void setCurrentSelectedGroupQuestion(string id){
+		PlayerPrefs.SetString (CURRENT_GROUP_QUESTION_SELECTED, id);
+	}
+
+	public static string getCurrentSelectedGroupQuestion(){
+		return PlayerPrefs.GetString (CURRENT_GROUP_QUESTION_SELECTED);
 	}
 }

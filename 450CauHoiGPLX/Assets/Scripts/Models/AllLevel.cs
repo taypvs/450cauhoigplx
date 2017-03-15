@@ -15,7 +15,6 @@ public class AllLevel : MonoBehaviour {
 		for(int i = 0; i < jsonArray.Length; i++){
 			LevelQuestion level = new LevelQuestion (jsonArray[i].Obj);
 			levels [i] = level;
-			Debug.Log (CommonMethods.getLevelString(level.lName));
 			PreferencesUtils.saveJsonGroupQuestionsInLevel(CommonMethods.getLevelString(level.lName), JsonParser.levelToJson(level));
 		}
 

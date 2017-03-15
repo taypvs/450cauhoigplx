@@ -31,5 +31,12 @@ public class LevelQuestion : MonoBehaviour {
 		groupQuestions [position] = groupQuestion;
 	}
 
-
+	public GroupQuestion getGroupQuestionById(string id){
+		for(int i = 0; i < groupQuestions.Length; i++){
+			GroupQuestion groupQuestion = groupQuestions [i];
+			if (groupQuestion.id.Equals (id))
+				return groupQuestion;
+		}
+		return null;
+	}
 }

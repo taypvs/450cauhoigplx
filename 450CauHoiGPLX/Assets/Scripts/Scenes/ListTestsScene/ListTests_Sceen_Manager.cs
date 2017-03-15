@@ -40,8 +40,6 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 
 			itemPosition_Y = itemPosition_Y - newGroupQuestion.GetComponent<RectTransform> ().rect.height;
 
-			newGroupQuestion.transform.Find ("DeThi_txt").GetComponent<Text> ().text = levelQuestion.groupQuestions [i].gName;
-
 			// If The test has not done yet
 			if (levelQuestion.groupQuestions [i].isDone.Equals ("0") || levelQuestion.groupQuestions [i].isDone.Equals ("")) {
 				newGroupQuestion.transform.Find ("RightLayout").gameObject.SetActive (false);	
@@ -61,6 +59,10 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 				newGroupQuestion.transform.Find ("Arrow Icon").GetComponent<RectTransform> ().anchoredPosition = new Vector2(50, -50);
 
 			}
+
+
+			newGroupQuestion.transform.Find ("DeThi_txt").GetComponent<Text> ().text = levelQuestion.groupQuestions [i].gName;
+			newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().idGroupQuestion = levelQuestion.groupQuestions [i].id;
 		}
 	}
 }

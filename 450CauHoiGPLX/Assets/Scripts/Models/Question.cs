@@ -27,6 +27,7 @@ public class Question : MonoBehaviour {
 		for(int i = 0; i < answerArray.Length; i++){
 			Answer answer = new Answer (answerArray[i].Obj);
 			addAnswer (answer, answerArray.Length, i);
+			Debug.Log ("answer name : " + answer.text);
 		}
 	}
 

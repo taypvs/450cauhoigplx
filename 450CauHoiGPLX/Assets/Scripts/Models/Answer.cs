@@ -7,8 +7,8 @@ public class Answer : MonoBehaviour {
 	public string id;
 	public string text;
 	public string position;
-	public string correct;
-	public string choose;
+	public string correct; // 0 : wrong ,  1 : right
+	public string choose; // 0 : not choose ,  1 : choose
 	public string question_id;
 
 	public Answer(){

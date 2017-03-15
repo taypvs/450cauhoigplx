@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 
 	public Text debugText;
+	public Text questionNumber;
+	public int totalQuestion;
+	public int index;
 
 	private bool isTouched;
 	private Vector2 touchPosition;
@@ -13,7 +16,6 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 	private Vector3 beginTouchPosition;
 	private Vector3 endTouchPosition;
 	private float dragVerticalSmooth;
-	private int index;
 	private float elemScreenWidth;
 	private float smoothAutoDrag;
 
@@ -84,18 +86,16 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 		Debug.Log (TouchUtils.getDragHorizontalDirection(beginTouchPosition, endTouchPosition));
 		debugText.text = "Screen.width : " + Screen.width + " - Delta X :  " + (beginTouchPosition.x - endTouchPosition.x);
 		if (TouchUtils.getDragHorizontalDirection (beginTouchPosition, endTouchPosition).Equals (UtilsConstanst.DRAG_LEFT)) {
-			if (endTouchPosition.x - beginTouchPosition.x > Screen.width / 2 && index > 0) {
+			if (endTouchPosition.x - beginTouchPosition.x > Screen.width / 3 && index > 0) {
 				float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
-				xChangeSmoothly (-elemScreenWidth * (index - 1), smoothAutoDrag);
-				index--;
+				swipeToLeft ();
 			} else {
 				xChangeSmoothly (-elemScreenWidth * (index), smoothAutoDrag);
 			}
 		} else if (TouchUtils.getDragHorizontalDirection (beginTouchPosition, endTouchPosition).Equals (UtilsConstanst.DRAG_RIGHT)) {
-			if (beginTouchPosition.x - endTouchPosition.x > Screen.width / 2 && index < (slides.transform.childCount - 1)) {
+			if (beginTouchPosition.x - endTouchPosition.x > Screen.width / 3 && index < (slides.transform.childCount - 1)) {
 				float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
-				xChangeSmoothly (-elemScreenWidth * (index + 1), smoothAutoDrag);
-				index++;
+				swipeToRight ();
 			} else {
 				xChangeSmoothly (-elemScreenWidth * (index), smoothAutoDrag);
 			}
@@ -116,6 +116,22 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 												"onupdate", "xChangeOnUpdateCallBack",
 												"time", celerate));
 
+	}
+
+	public void swipeToLeft(){
+		if (index > 0) {
+			xChangeSmoothly (-elemScreenWidth * (index - 1), smoothAutoDrag);
+			index--;
+			questionNumber.text = (index + 1) + "/" + totalQuestion;
+		}
+	}
+
+	public void swipeToRight(){
+		if (index < (slides.transform.childCount - 1)) {
+			xChangeSmoothly (-elemScreenWidth * (index + 1), smoothAutoDrag);
+			index++;
+			questionNumber.text = (index + 1) + "/" + totalQuestion;
+		}
 	}
 
 	void xChangeOnUpdateCallBack( int newValue )

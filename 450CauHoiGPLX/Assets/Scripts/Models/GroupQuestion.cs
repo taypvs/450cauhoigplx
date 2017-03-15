@@ -29,6 +29,7 @@ public class GroupQuestion : MonoBehaviour {
 		for(int i = 0; i < questionArray.Length; i++){
 			Question question = new Question (questionArray[i].Obj);
 			addQuestion (question, questionArray.Length, i);
+			Debug.Log ("question name : " + question.qName);
 		}
 	}
 

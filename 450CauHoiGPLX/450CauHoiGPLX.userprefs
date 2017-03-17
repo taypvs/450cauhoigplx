@@ -1,14 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_ScreenManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Scenes\ListTestsScene\ListTests_Sceen_Manager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_ScreenManager.cs" Line="104" Column="1" />
-      <File FileName="Assets\Scripts\Scenes\ListTestsScene\ListTests_Sceen_Manager.cs" Line="38" Column="71" />
+      <File FileName="Assets\Scripts\Buttons\List_Tests_Screen_Btn.cs" Line="14" Column="2" />
+      <File FileName="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_ScreenManager.cs" Line="106" Column="56" />
+      <File FileName="Assets\Scripts\Scenes\ListTestsScene\ListTests_Sceen_Manager.cs" Line="72" Column="56" />
       <File FileName="Assets\Scripts\Models\LevelQuestion.cs" Line="34" Column="43" />
       <File FileName="Assets\Scripts\Scenes\TestSimalationScene\TestSimulate_SwipeController.cs" Line="11" Column="19" />
-      <File FileName="Assets\Scripts\Buttons\Test_Simulation_Screen_Btn.cs" Line="29" Column="36" />
-      <File FileName="Assets\Scripts\Models\Question.cs" Line="29" Column="42" />
+      <File FileName="Assets\Scripts\Buttons\Test_Simulation_Screen_Btn.cs" Line="35" Column="85" />
+      <File FileName="Assets\Scripts\Models\Question.cs" Line="38" Column="3" />
       <File FileName="Assets\Scripts\Scene Affects\SceneLoader.cs" Line="56" Column="71" />
+      <File FileName="Assets\Scripts\Models\GroupQuestion.cs" Line="12" Column="19" />
+      <File FileName="Assets\Scripts\Common\PreferencesUtils.cs" Line="46" Column="3" />
+      <File FileName="Assets\Scripts\Models\AllLevel.cs" Line="18" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

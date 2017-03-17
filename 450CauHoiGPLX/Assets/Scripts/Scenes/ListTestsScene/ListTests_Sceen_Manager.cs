@@ -65,4 +65,12 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 			newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().idGroupQuestion = levelQuestion.groupQuestions [i].id;
 		}
 	}
+
+	public void loadQuestionDoneAt(int index){
+		if (PreferencesUtils.getGroupQuestionDone () != null && !PreferencesUtils.getGroupQuestionDone ().Equals ("")) {
+			GroupQuestion groupQuestion = new GroupQuestion (PreferencesUtils.getGroupQuestionDone ());
+			Debug.Log ("groupQuestion : " + groupQuestion.isDone);
+		}
+	}
+
 }

@@ -39,4 +39,8 @@ public class Test_Simulation_Screen_Btn : MonoBehaviour {
 	public void onClickSeeResult(){
 		screenManager.GetComponent<TestSimulate_ScreenManager> ().checkAnswer (swipe.GetComponent<TestSimulate_SwipeController> ().index);
 	}
+
+	public void onClickEndTest(){
+		screenManager.GetComponent<TestSimulate_ScreenManager> ().endTest ();
+	}
 }

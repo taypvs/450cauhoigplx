@@ -36,4 +36,12 @@ public class PreferencesUtils {
 	public static string getCurrentSelectedGroupQuestion(){
 		return PlayerPrefs.GetString (CURRENT_GROUP_QUESTION_SELECTED);
 	}
+
+	public static void saveGroupQuestionDone(string currentGroupId, string jsonContent){
+		PlayerPrefs.SetString (getCurrentLevelSelected() + "_" + currentGroupId, jsonContent);
+	}
+
+	public static string getGroupQuestionDone(string currentGroupId){
+		return PlayerPrefs.GetString (getCurrentLevelSelected() + "_" + currentGroupId);
+	}
 }

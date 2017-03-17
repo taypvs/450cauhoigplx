@@ -100,4 +100,10 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 			return getAnswerLayoutFromIndex (parent.transform.Find ("AnswerLayout(Clone)").gameObject, --index);
 		}
 	}
+
+	public void endTest(){
+		groupQuestion.isDone = "1";
+		PreferencesUtils.saveGroupQuestionDone (groupQuestion.id, JsonParser.groupQuestionToJson(groupQuestion));
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene");
+	}
 }

@@ -38,6 +38,7 @@ public class JsonParser {
 			"\"type\":\"" + groupQuestion.type + "\"," +
 			"\"count\":\"" + groupQuestion.count + "\"," +
 			"\"isDone\":\"" + groupQuestion.isDone + "\"," +
+			"\"timeDone\":\"" + groupQuestion.timeDone + "\"," +
 			"\"questions\":[";
 		if (groupQuestion.questions != null) {
 			for (int i = 0; i < groupQuestion.questions.Length; i++) {

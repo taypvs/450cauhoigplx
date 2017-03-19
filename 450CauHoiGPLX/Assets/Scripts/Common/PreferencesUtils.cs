@@ -10,6 +10,7 @@ public class PreferencesUtils {
 	public static string CURRENT_LEVEL_SELECTED = "CURRENT_LEVEL_SELECTED";
 	public static string CURRENT_GROUP_QUESTION_SELECTED = "CURRENT_GROUP_QUESTION_SELECTED";
 
+	// Current selected Level in Menu 
 	public static void setCurrentLevelSelected(string value){
 		PlayerPrefs.SetString (CURRENT_LEVEL_SELECTED, value);
 	}
@@ -19,6 +20,8 @@ public class PreferencesUtils {
 		return PlayerPrefs.GetString (CURRENT_LEVEL_SELECTED);
 	}
 
+
+	// Save All Group Question to Memory
 	public static void saveJsonGroupQuestionsInLevel(string level, string value){
 		string saveLevel = LEVEL_DRIVER_TYPE + level;
 		PlayerPrefs.SetString (saveLevel, value);
@@ -28,7 +31,9 @@ public class PreferencesUtils {
 		string savedLevel = LEVEL_DRIVER_TYPE + level;
 		return PlayerPrefs.GetString (savedLevel);
 	}
+		
 
+	// Group Question Id Select to Test
 	public static void setCurrentSelectedGroupQuestion(string id){
 		PlayerPrefs.SetString (CURRENT_GROUP_QUESTION_SELECTED, id);
 	}
@@ -37,6 +42,12 @@ public class PreferencesUtils {
 		return PlayerPrefs.GetString (CURRENT_GROUP_QUESTION_SELECTED);
 	}
 
+	public static void clearCurrentSelectedGroupQuestion(){
+		PlayerPrefs.DeleteKey (CURRENT_GROUP_QUESTION_SELECTED);
+	}
+
+
+	// Group question saved after Test
 	public static void saveGroupQuestionDone(string currentGroupId, string jsonContent){
 		PlayerPrefs.SetString (getCurrentLevelSelected() + "_" + currentGroupId, jsonContent);
 	}

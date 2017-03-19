@@ -20,14 +20,13 @@ public class Question : MonoBehaviour {
 		qName = jsonObject ["name"].Str;
 		image = jsonObject ["image"].Str;
 		position = jsonObject ["position"].Str;
-		result = "null";
+		result = "0";
 		if(jsonObject.ContainsKey ("result"))
 			result = jsonObject ["result"].Str;
 		JSONArray answerArray = jsonObject ["answers"].Array;
 		for(int i = 0; i < answerArray.Length; i++){
 			Answer answer = new Answer (answerArray[i].Obj);
 			addAnswer (answer, answerArray.Length, i);
-			Debug.Log ("answer name : " + answer.text);
 		}
 	}
 

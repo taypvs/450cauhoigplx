@@ -28,6 +28,6 @@ public class MainScene_ApiQuestionsLoader_Controller : MonoBehaviour {
 		AllLevel allLv = new AllLevel(jsonArray);
 		debugText.text = "onCompleteApi => " + allLv.levels[0].lName;
 		PreferencesUtils.setCurrentLevelSelected ("A1");
-		Debug.Log ("Result : " + listAllQuestionWs.httpApiLoader.results);
+		//Debug.Log ("Result : " + listAllQuestionWs.httpApiLoader.results);
 	}
 }

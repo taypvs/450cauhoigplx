@@ -9,6 +9,7 @@ public class GroupQuestion : MonoBehaviour {
 	public string position;
 	public string type; // 0 : Đề câu hỏi ôn tập, 1 : Đề thi thử
 	public string count; 
+	public string timeDone; 
 	public string isDone; // 0 : not yet, 1 : is Done
 	public Question[] questions;
 
@@ -25,11 +26,13 @@ public class GroupQuestion : MonoBehaviour {
 		isDone = "";
 		if(jsonObject.ContainsKey("isDone"))
 			isDone = jsonObject ["isDone"].Str;
+		timeDone = "";
+		if(jsonObject.ContainsKey("timeDone"))
+			timeDone = jsonObject ["timeDone"].Str;
 		JSONArray questionArray = jsonObject ["questions"].Array;
 		for(int i = 0; i < questionArray.Length; i++){
 			Question question = new Question (questionArray[i].Obj);
 			addQuestion (question, questionArray.Length, i);
-			Debug.Log ("question name : " + question.qName);
 		}
 	}
 
@@ -37,5 +40,23 @@ public class GroupQuestion : MonoBehaviour {
 		if(questions==null)
 			questions = new Question[total];
 		questions [position] = question;
+	}
+
+	public int numQuestionRight() {
+		int count = 0;
+		foreach (Question question in questions){
+			if (question.result.Equals ("2"))
+				count++;
+		}
+		return count;
+	}
+
+	public int numQuestionWrong() {
+		int count = 0;
+		foreach (Question question in questions){
+			if (question.result.Equals ("1"))
+				count++;
+		}
+		return count;
 	}
 }

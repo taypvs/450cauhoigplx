@@ -9,9 +9,9 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 	public GameObject listContent;
 	public GameObject sceneLoader;
 	public Text debugText;
+
 	private LevelQuestion levelQuestion;
-
-
+	private GroupQuestion groupDone;
 	// Use this for initialization
 	void Start () {
 		Screen.fullScreen = false;
@@ -41,7 +41,8 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 			itemPosition_Y = itemPosition_Y - newGroupQuestion.GetComponent<RectTransform> ().rect.height;
 
 			// If The test has not done yet
-			if (levelQuestion.groupQuestions [i].isDone.Equals ("0") || levelQuestion.groupQuestions [i].isDone.Equals ("")) {
+			if (!(loadQuestionDoneAt(i))) {
+
 				newGroupQuestion.transform.Find ("RightLayout").gameObject.SetActive (false);	
 				newGroupQuestion.transform.Find ("WrongLayout").gameObject.SetActive (false);	
 				newGroupQuestion.transform.Find ("Image").gameObject.SetActive (false);	
@@ -51,26 +52,31 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 			}
 			// If The test has been done
 			else {
+				
 				newGroupQuestion.transform.Find ("RightLayout").gameObject.SetActive (true);	
 				newGroupQuestion.transform.Find ("WrongLayout").gameObject.SetActive (true);	
 				newGroupQuestion.transform.Find ("Image").gameObject.SetActive (true);	
 
 				newGroupQuestion.transform.Find ("DeThi_txt").GetComponent<RectTransform> ().anchoredPosition = new Vector2(50, -50);
-				newGroupQuestion.transform.Find ("Arrow Icon").GetComponent<RectTransform> ().anchoredPosition = new Vector2(50, -50);
+				newGroupQuestion.transform.Find ("Arrow Icon").GetComponent<RectTransform> ().anchoredPosition = new Vector2(-50, -50);
 
+				newGroupQuestion.transform.Find ("RightLayout").Find ("Right Answers Txt").GetComponent<Text> ().text = groupDone.numQuestionRight().ToString();
+				newGroupQuestion.transform.Find ("WrongLayout").Find ("Wrong Answers Txt").GetComponent<Text> ().text = groupDone.numQuestionWrong().ToString();
 			}
-
-
 			newGroupQuestion.transform.Find ("DeThi_txt").GetComponent<Text> ().text = levelQuestion.groupQuestions [i].gName;
 			newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().idGroupQuestion = levelQuestion.groupQuestions [i].id;
+			newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().isDone = levelQuestion.groupQuestions [i].isDone;
+
 		}
 	}
 
-	public void loadQuestionDoneAt(int index){
-		if (PreferencesUtils.getGroupQuestionDone () != null && !PreferencesUtils.getGroupQuestionDone ().Equals ("")) {
-			GroupQuestion groupQuestion = new GroupQuestion (PreferencesUtils.getGroupQuestionDone ());
-			Debug.Log ("groupQuestion : " + groupQuestion.isDone);
+	private bool loadQuestionDoneAt(int index){
+		if (PreferencesUtils.getGroupQuestionDone (levelQuestion.groupQuestions[index].id) != null && !PreferencesUtils.getGroupQuestionDone (levelQuestion.groupQuestions[index].id).Equals ("")) {
+			groupDone = new GroupQuestion (JSONObject.Parse (PreferencesUtils.getGroupQuestionDone (levelQuestion.groupQuestions[index].id)));
+			if(groupDone.isDone.Equals("1"))
+				return true;	
 		}
+		return false;
 	}
-
+		
 }

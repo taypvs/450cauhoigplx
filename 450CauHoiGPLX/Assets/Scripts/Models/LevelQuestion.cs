@@ -20,7 +20,6 @@ public class LevelQuestion : MonoBehaviour {
 		JSONArray groupQuestionArray = jsonObject ["groups"].Array;
 		for(int i = 0; i < groupQuestionArray.Length; i++){
 			GroupQuestion groupQuestion = new GroupQuestion (groupQuestionArray[i].Obj);
-			Debug.Log ("groupQuestion name : " + groupQuestion.gName);
 			addGroupQuestion (groupQuestion, groupQuestionArray.Length, i);
 		}
 	}

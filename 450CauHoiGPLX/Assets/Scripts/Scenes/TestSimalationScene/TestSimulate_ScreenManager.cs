@@ -1,4 +1,4 @@
-﻿	using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Boomlagoon.JSON;
@@ -10,6 +10,7 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 	public GameObject answerLayout;
 	public GameObject sceneLoader;
 	public GameObject appBackground;
+	public GameObject timeManager;
 
 	private GroupQuestion groupQuestion;
 
@@ -72,17 +73,22 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 	}
 
 	public void checkAnswer(int index){
+		groupQuestion.questions [index].result = "0";
 		for (int i = 0; i < groupQuestion.questions [index].answers.Length; i++) {
 			if (groupQuestion.questions [index].answers [i].choose.Equals ("1")) {
 				if (groupQuestion.questions [index].answers [i].correct.Equals ("1")) {
 					getAnswerLayoutFromIndex (currentQuestionLayout (index), i).transform.Find ("Text").GetComponent<Text> ().color = Color.blue;
 					getAnswerLayoutFromIndex (currentQuestionLayout (index), i).transform.Find ("Text").GetComponent<Text> ().fontStyle = FontStyle.Bold;
+					if(groupQuestion.questions [index].result.Equals("0"))
+						groupQuestion.questions [index].result = "2";
 				} else {
 					getAnswerLayoutFromIndex (currentQuestionLayout (index), i).transform.Find ("Text").GetComponent<Text> ().color = Color.red;
+					groupQuestion.questions [index].result = "1";
 				}
 			} else {
 				if (groupQuestion.questions [index].answers [i].correct.Equals ("1")) {
 					getAnswerLayoutFromIndex (currentQuestionLayout (index), i).transform.Find ("Text").GetComponent<Text> ().color = Color.blue;
+					groupQuestion.questions [index].result = "1";
 				}
 			}
 			getAnswerLayoutFromIndex (currentQuestionLayout (index), i).GetComponent<Button>().enabled = false;
@@ -103,7 +109,13 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 
 	public void endTest(){
 		groupQuestion.isDone = "1";
+		for (int i = 0; i < groupQuestion.questions.Length; i++) {
+			if (groupQuestion.questions [i].result.Equals ("null")) {
+				checkAnswer (i);
+			}
+		}
 		PreferencesUtils.saveGroupQuestionDone (groupQuestion.id, JsonParser.groupQuestionToJson(groupQuestion));
-		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene");
+		PreferencesUtils.clearCurrentSelectedGroupQuestion ();
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 255, 0.1f);
 	}
 }

@@ -20,7 +20,7 @@ public class List_Tests_Screen_Btn : MonoBehaviour {
 
 	public void onClickGoToTest(){
 		PreferencesUtils.setCurrentSelectedGroupQuestion (idGroupQuestion);
-		if (isDone.Equals ("0")) {
+		if (isDone.Equals ("0") || isDone.Equals ("")) {
 			sceneLoader.doLoadLevelFadeIn ("Test Simulation Scene", 250, 0.2f);
 		} else {
 			sceneLoader.doLoadLevelFadeIn ("List Question Result", 250, 0.2f);

@@ -1,14 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenes/TestSimalationScene/TestSimulate_ScreenManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WheelScripts\BoxFollow.cs">
     <Files>
-      <File FileName="Assets/Scripts/Scenes/ListTestsScene/ListTests_Sceen_Manager.cs" Line="75" Column="134" />
-      <File FileName="Assets/Scripts/Common/PreferencesUtils.cs" Line="41" Column="54" />
-      <File FileName="Assets/Scripts/Models/GroupQuestion.cs" Line="48" Column="19" />
-      <File FileName="Assets/Scripts/Scenes/TestSimalationScene/TestSimulate_ScreenManager.cs" Line="13" Column="32" />
-      <File FileName="Assets/Scripts/Scenes/MainScene/MainScene_ApiQuestionsLoader_Controller.cs" Line="31" Column="5" />
-      <File FileName="Assets/Scripts/Scenes/ListQuestionResult/ListQuestionDone_ScreenManager.cs" Line="60" Column="37" />
-      <File FileName="Assets/Scripts/Buttons/List_Tests_Screen_Btn.cs" Line="26" Column="56" />
+      <File FileName="Assets\Scripts\Buttons\CarSimulation_Screen_Btn.cs" Line="26" Column="1" />
+      <File FileName="Assets\Scripts\WheelScripts\CarScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WheelScripts\CarMovementRoot.cs" Line="16" Column="26" />
+      <File FileName="Assets\Scripts\WheelScripts\BoxFollow.cs" Line="19" Column="2" />
+      <File FileName="Assets\Scripts\WheelScripts\TruckBody.cs" Line="52" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

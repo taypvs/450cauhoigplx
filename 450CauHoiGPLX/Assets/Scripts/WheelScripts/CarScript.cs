@@ -30,7 +30,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	// Use this for initialization
 	void Start () {
 		init ();
-		startMoving ();
+//		startMoving ();
 	}
 	
 	// Update is called once per frame

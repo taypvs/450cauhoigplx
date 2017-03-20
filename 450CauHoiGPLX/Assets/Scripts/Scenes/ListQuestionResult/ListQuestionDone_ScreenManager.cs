@@ -7,6 +7,7 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 
 	public GameObject scrollContent;
 	public GameObject resultLayout;
+	public GameObject sceneLoader;
 	public Text timeTxt;
 	public Text resultTxt;
 	public Text passTxt;
@@ -23,7 +24,8 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown (KeyCode.Escape))
+			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 230, 0.05f);
 	}
 
 	private void initResults(){
@@ -36,7 +38,7 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 			GameObject newResultLayout = (GameObject)Instantiate (resultLayout, new Vector3(0, 0, 0), Quaternion.identity);
 
 			// Init Layout
-			itemPosition_X += 40;
+			itemPosition_X = ((i % 4) * (newResultLayout.GetComponent<RectTransform> ().rect.width + 40) + 40);
 			itemPosition_Y = -1 * ((i / 4) * (newResultLayout.GetComponent<RectTransform> ().rect.height + 40) + 40);
 			newResultLayout.transform.SetParent (scrollContent.transform, false);
 			newResultLayout.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (itemPosition_X, itemPosition_Y);
@@ -49,13 +51,12 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 				newResultLayout.transform.Find("Icon").gameObject.GetComponent<Image>().sprite = rightIco;
 			else if (groupDone.questions[i].result.Equals("1"))
 				newResultLayout.transform.Find("Icon").gameObject.GetComponent<Image>().sprite = wrongIco;
-
-			itemPosition_X += newResultLayout.GetComponent<RectTransform> ().rect.width;
+			
 		}
 	}
 
 	private void initTopText(){
-		timeTxt.text = groupDone.timeDone;
+		timeTxt.text = CommonMethods.secondsToMMSS(int.Parse(groupDone.timeDone));
 		resultTxt.text = groupDone.numQuestionRight () + "/" + groupDone.questions.Length;
 		if (groupDone.numQuestionWrong() < 5) {
 			passTxt.text = "ĐẠT";

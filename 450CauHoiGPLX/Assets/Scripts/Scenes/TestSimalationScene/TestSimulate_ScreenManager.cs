@@ -109,6 +109,7 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 
 	public void endTest(){
 		groupQuestion.isDone = "1";
+		groupQuestion.timeDone = timeManager.GetComponent<TestSimulate_TimeManager> ().totalTimePassed.ToString();
 		for (int i = 0; i < groupQuestion.questions.Length; i++) {
 			if (groupQuestion.questions [i].result.Equals ("null")) {
 				checkAnswer (i);

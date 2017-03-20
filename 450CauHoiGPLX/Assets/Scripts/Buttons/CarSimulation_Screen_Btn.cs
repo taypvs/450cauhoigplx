@@ -19,8 +19,10 @@ public class CarSimulation_Screen_Btn : MonoBehaviour {
 
 	public void onClickKeepDriving(){
 		mainCar.GetComponent<CarScript> ().startMoving ();
-		car1.GetComponent<CarScript> ().startMoving ();
-		car2.GetComponent<CarScript> ().startMoving ();
+		if(car1!=null)
+			car1.GetComponent<CarScript> ().startMoving ();
+		if(car2!=null)
+			car2.GetComponent<CarScript> ().startMoving ();
 		soundStart.Play ();
 		transform.parent.gameObject.SetActive (false);
 	}

@@ -16,6 +16,7 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 	void Start () {
 		Screen.fullScreen = false;
 		initGroupQuestions ();
+		GameObject.Find ("Header Title").GetComponent<Text>().text = "Danh sách đề thi";
 	}
 	
 	// Update is called once per frame
@@ -49,6 +50,8 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 
 				newGroupQuestion.transform.Find ("DeThi_txt").GetComponent<RectTransform> ().anchoredPosition = new Vector2(50, -110);
 				newGroupQuestion.transform.Find ("Arrow Icon").GetComponent<RectTransform> ().anchoredPosition = new Vector2(-50, -110);
+
+				newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().isDone = levelQuestion.groupQuestions [i].isDone;
 			}
 			// If The test has been done
 			else {
@@ -62,10 +65,11 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 
 				newGroupQuestion.transform.Find ("RightLayout").Find ("Right Answers Txt").GetComponent<Text> ().text = groupDone.numQuestionRight().ToString();
 				newGroupQuestion.transform.Find ("WrongLayout").Find ("Wrong Answers Txt").GetComponent<Text> ().text = groupDone.numQuestionWrong().ToString();
+
+				newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().isDone = groupDone.isDone;
 			}
 			newGroupQuestion.transform.Find ("DeThi_txt").GetComponent<Text> ().text = levelQuestion.groupQuestions [i].gName;
 			newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().idGroupQuestion = levelQuestion.groupQuestions [i].id;
-			newGroupQuestion.GetComponent<List_Tests_Screen_Btn> ().isDone = levelQuestion.groupQuestions [i].isDone;
 
 		}
 	}

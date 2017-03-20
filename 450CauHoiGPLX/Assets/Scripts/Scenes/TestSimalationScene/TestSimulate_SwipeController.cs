@@ -24,10 +24,10 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 
 	private void initSimulation(){
 		isTouched = false;
-		dragVerticalSmooth = 0.5f;
+		dragVerticalSmooth = 0.7f;
 		elemScreenWidth = slides.transform.GetChild (0).gameObject.GetComponent<RectTransform> ().rect.width;
 		index = 0;
-		smoothAutoDrag = 0.1f;
+		smoothAutoDrag = 0.2f;
 	}
 
 	void Start () {

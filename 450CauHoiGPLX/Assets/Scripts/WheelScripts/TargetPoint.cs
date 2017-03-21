@@ -6,6 +6,8 @@ public class TargetPoint : MonoBehaviour {
 	public bool isCheckPoint;
 	public bool isStopPoint;
 	public bool isWaitPoint;
+	public bool isSwitchBack;
+	public bool isSwitchFront;
 	public float speed;
 	public float waitingTime;
 	public GameObject popUp;

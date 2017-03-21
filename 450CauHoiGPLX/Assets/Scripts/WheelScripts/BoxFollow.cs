@@ -19,11 +19,13 @@ public class BoxFollow : MonoBehaviour {
 
 
 	public void switchBackward(){
+		Debug.Log ("switchBackward");
 		forwardBody.switchBody ();
 		backwardBody.switchBody ();
 	}
 
 	public void switchForward(){
+		Debug.Log ("switchForward");
 		forwardBody.switchBody ();
 		backwardBody.switchBody ();
 	}

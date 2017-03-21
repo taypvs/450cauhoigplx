@@ -13,6 +13,7 @@ public class TruckBody : MonoBehaviour {
 	public GameObject wheel4;
 
 	public GameObject target;
+	public GameObject backwardTarget;
 	public Transform parent;
 	private float forwardDirection; // -1: forward  -    1: backward
 	private float wheelSpeedRatio;
@@ -45,7 +46,7 @@ public class TruckBody : MonoBehaviour {
 		if(!isBackward)
 			targetLook = target.transform.Find ("Root").Find("Head");
 		else
-			targetLook = target.transform.Find ("Root").Find("Tail");
+			targetLook = backwardTarget.transform;
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetLook.position - transform.position), Time.deltaTime*lookSmoothRate*lookSmoothRatio);
 	}
 

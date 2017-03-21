@@ -10,17 +10,20 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	public bool isMainCar;
 	public float defaultSpeed;
 	public float turnRate;
+	public GameObject truckBody;
 
 	private bool isMoving;
 	private int pointPosition;
 	private float speedRate;
 	private GameObject currentPoint;
-
+	private GameObject previousPoint;
+	public bool isBackward;
 	private const float defaultCelerate = 1f;
 	private const float fastCelerate = 0.5f;
 	private const float slowCelerate = 1.2f;
 
 	private void init(){
+		isBackward = false;
 		isMoving = false;
 		currentSpeed = 0;
 		pointPosition = -1;
@@ -37,6 +40,10 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	void Update () {
 		if (currentPoint != null) {
 			if (CommonMethods.distanceToPoint (transform.position, currentPoint.transform.position) < 0.3f && isMoving) {
+
+				if (currentPoint.GetComponent<TargetPoint> ().isSwitchBack)
+					switchTurnBack ();
+				
 				if (currentPoint.GetComponent<TargetPoint> ().isCheckPoint) {
 					pause ();
 					showPopupInfo ();
@@ -50,6 +57,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 				} else {
 					moveToNextPoint ();
 				}
+
 			}
 		}
 
@@ -76,6 +84,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 				speedChange(currentPoint.GetComponent<TargetPoint>().speed, slowCelerate);
 		}
 		if (pointPosition < targetPoint.Length) {
+			previousPoint = targetPoint [pointPosition-1];
 			currentPoint = targetPoint [pointPosition];
 			SmoothLook (currentPoint.transform);
 //			transform.LookAt (currentPoint.transform);
@@ -129,8 +138,18 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		
 	private void SmoothLook(Transform target){
 //		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime);
-		iTween.LookTo(gameObject.transform.Find("Root").gameObject, iTween.Hash("looktarget", target , "time", 0.4f*turnRate, "easeType", iTween.EaseType.linear));
+		Vector3 targetLook;
+		if (isBackward)
+			targetLook = new Vector3 (transform.position.x * 2 - target.position.x, target.position.y, transform.position.z * 2 - target.position.z);
+		else
+			targetLook = target.position;
+		iTween.LookTo(gameObject.transform.Find("Root").gameObject, iTween.Hash("looktarget", targetLook , "time", 0.4f*turnRate, "easeType", iTween.EaseType.linear));
 
+	}
+
+	private void switchTurnBack(){
+		isBackward = true;
+		truckBody.GetComponent<BoxFollow> ().switchBackward ();
 	}
 
 	IEnumerator waitForSeconds(float seconds) {

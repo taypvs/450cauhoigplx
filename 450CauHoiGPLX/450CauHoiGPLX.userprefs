@@ -1,12 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WheelScripts\BoxFollow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WheelScripts\TruckBody.cs">
     <Files>
+      <File FileName="Assets\Scripts\WheelScripts\BoxFollow.cs" Line="24" Column="29" />
       <File FileName="Assets\Scripts\Buttons\CarSimulation_Screen_Btn.cs" Line="26" Column="1" />
-      <File FileName="Assets\Scripts\WheelScripts\CarScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\WheelScripts\CarScript.cs" Line="43" Column="1" />
       <File FileName="Assets\Scripts\WheelScripts\CarMovementRoot.cs" Line="16" Column="26" />
-      <File FileName="Assets\Scripts\WheelScripts\BoxFollow.cs" Line="19" Column="2" />
-      <File FileName="Assets\Scripts\WheelScripts\TruckBody.cs" Line="52" Column="24" />
+      <File FileName="Assets\Scripts\WheelScripts\TruckBody.cs" Line="49" Column="31" />
+      <File FileName="Assets\Scripts\WheelScripts\TargetPoint.cs" Line="11" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

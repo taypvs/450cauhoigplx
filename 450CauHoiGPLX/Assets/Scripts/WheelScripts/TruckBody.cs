@@ -21,7 +21,7 @@ public class TruckBody : MonoBehaviour {
 	private float lookSmoothRatio;
 	// Use this for initialization
 	void Start () {
-		lookSmoothRatio = 0.25f;
+		lookSmoothRatio = 0.2f;
 		wheelSpeedRatio = 8;
 		if(isBackward)
 			forwardDirection = 1;
@@ -48,6 +48,7 @@ public class TruckBody : MonoBehaviour {
 		else
 			targetLook = backwardTarget.transform;
 		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetLook.position - transform.position), Time.deltaTime*lookSmoothRate*lookSmoothRatio);
+		//iTween.LookTo(gameObject, iTween.Hash("looktarget", targetLook , "time", 0.4f*lookSmoothRate*lookSmoothRatio, "easeType", iTween.EaseType.linear));
 	}
 
 	public void switchBody(){

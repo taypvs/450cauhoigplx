@@ -39,6 +39,9 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	// Update is called once per frame
 	void Update () {
 		if (currentPoint != null) {
+			if (currentPoint.GetComponent<TargetPoint> ().isTruckTurnBack && isMoving) {
+				GameObject.Find ("BackwardBody").GetComponent<TruckBody> ().backwardTarget = targetPoint [pointPosition+7];
+			}
 			if (CommonMethods.distanceToPoint (transform.position, currentPoint.transform.position) < 0.3f && isMoving) {
 
 				if (currentPoint.GetComponent<TargetPoint> ().isSwitchBack)

@@ -8,6 +8,7 @@ public class TargetPoint : MonoBehaviour {
 	public bool isWaitPoint;
 	public bool isSwitchBack;
 	public bool isSwitchFront;
+	public bool isTruckTurnBack;
 	public float speed;
 	public float waitingTime;
 	public GameObject popUp;

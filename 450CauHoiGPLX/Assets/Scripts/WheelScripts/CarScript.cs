@@ -4,7 +4,6 @@ using System.Collections;
 public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	public GameObject[] targetPoint;
-	public GameObject popUp;
 	public float currentSpeed;
 	public AudioSource finishSound;
 	public bool isMainCar;
@@ -16,7 +15,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	private int pointPosition;
 	private float speedRate;
 	private GameObject currentPoint;
-	private GameObject previousPoint;
 	public bool isBackward;
 	private const float defaultCelerate = 1f;
 	private const float fastCelerate = 0.5f;
@@ -49,7 +47,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 				
 				if (currentPoint.GetComponent<TargetPoint> ().isCheckPoint) {
 					pause ();
-					showPopupInfo ();
 				} else if (currentPoint.GetComponent<TargetPoint> ().isStopPoint) {
 					stop ();
 					moveToNextPoint ();
@@ -66,7 +63,8 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 		// Car driving
 		if (isMoving) {
-			transform.Translate ((currentPoint.transform.position - transform.position).normalized * currentSpeed * speedRate * Time.deltaTime);
+			if(currentPoint!=null)
+				transform.Translate ((currentPoint.transform.position - transform.position).normalized * currentSpeed * speedRate * Time.deltaTime);
 		}
 	}
 
@@ -87,7 +85,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 				speedChange(currentPoint.GetComponent<TargetPoint>().speed, slowCelerate);
 		}
 		if (pointPosition < targetPoint.Length) {
-			previousPoint = targetPoint [pointPosition-1];
 			currentPoint = targetPoint [pointPosition];
 			SmoothLook (currentPoint.transform);
 //			transform.LookAt (currentPoint.transform);
@@ -110,14 +107,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 			isMoving = false;
 		else
 			finishSound.Play ();
-	}
-
-	public void showPopupInfo (){
-		popUp.SetActive (true);
-	}
-
-	public void hidePopupInfo (){
-		popUp.SetActive (false);
 	}
 
 	public void startEngine (){

@@ -1,13 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\WheelScripts\TruckBody.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/WheelScripts/CarScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\WheelScripts\BoxFollow.cs" Line="24" Column="29" />
-      <File FileName="Assets\Scripts\Buttons\CarSimulation_Screen_Btn.cs" Line="26" Column="1" />
-      <File FileName="Assets\Scripts\WheelScripts\CarScript.cs" Line="43" Column="1" />
-      <File FileName="Assets\Scripts\WheelScripts\CarMovementRoot.cs" Line="16" Column="26" />
-      <File FileName="Assets\Scripts\WheelScripts\TruckBody.cs" Line="49" Column="31" />
-      <File FileName="Assets\Scripts\WheelScripts\TargetPoint.cs" Line="11" Column="29" />
+      <File FileName="Assets/Scripts/WheelScripts/CarScript.cs" Line="142" Column="22" />
+      <File FileName="Assets/Scripts/WheelScripts/BoxFollow.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WheelScripts/TruckBody.cs" Line="49" Column="1" />
+      <File FileName="Assets/Scripts/WheelScripts/TargetPoint.cs" Line="11" Column="30" />
+      <File FileName="Assets/Scripts/WheelScripts/CarMovementRoot.cs" Line="16" Column="26" />
+      <File FileName="Assets/Scripts/Buttons/CarSimulation_Screen_Btn.cs" Line="7" Column="28" />
+      <File FileName="Assets/Scripts/Interfaces/CarBehaviorInterface.cs" Line="7" Column="15" />
+      <File FileName="Assets/Scripts/Common/UtilsConstanst.cs" Line="14" Column="3" />
+      <File FileName="Assets/Scripts/UIElementHandler/PopupScrollViewHandler.cs" Line="20" Column="3" />
+      <File FileName="Assets/Scripts/UIElementHandler/AnswerLayoutHandler.cs" Line="14" Column="180" />
+      <File FileName="Assets/Scripts/UIElementHandler/PopupContentHandler.cs" Line="17" Column="110" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

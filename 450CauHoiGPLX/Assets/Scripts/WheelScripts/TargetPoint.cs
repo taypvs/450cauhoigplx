@@ -22,4 +22,8 @@ public class TargetPoint : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void showPopup(){
+		
+	}
 }

@@ -5,6 +5,7 @@ public class TruckBody : MonoBehaviour {
 
 	public bool isBackward;
 	public bool isActive;
+	public bool isAllowRotate;
 	public GameObject oppisitePart;
 
 	public GameObject wheel1;
@@ -19,9 +20,11 @@ public class TruckBody : MonoBehaviour {
 	private float wheelSpeedRatio;
 	private float lookSmoothRate;
 	private float lookSmoothRatio;
+	private float lookBackSmoothRatio;
 	// Use this for initialization
 	void Start () {
-		lookSmoothRatio = 0.2f;
+		lookBackSmoothRatio = 2f;
+		lookSmoothRatio = 0.3f;
 		wheelSpeedRatio = 8;
 		if(isBackward)
 			forwardDirection = 1;
@@ -31,7 +34,7 @@ public class TruckBody : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isActive)
+		if (isActive&&isAllowRotate&&target.GetComponent<CarScript> ().isMoving)
 			SmoothLook ();
 
 		lookSmoothRate = target.GetComponent<CarScript> ().currentSpeed;
@@ -43,17 +46,21 @@ public class TruckBody : MonoBehaviour {
 
 	private void SmoothLook(){
 		Transform targetLook;
-		if(!isBackward)
-			targetLook = target.transform.Find ("Root").Find("Head");
-		else
+		if (!isBackward) {
+			targetLook = target.transform.Find ("Root").Find ("Head");
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetLook.position - transform.position), Time.deltaTime*lookSmoothRate*lookSmoothRatio);
+		} else {
 			targetLook = backwardTarget.transform;
-		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetLook.position - transform.position), Time.deltaTime*lookSmoothRate*lookSmoothRatio);
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetLook.position - transform.position), Time.deltaTime*lookSmoothRate*lookBackSmoothRatio);
+		}
+		//transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(targetLook.position - transform.position), Time.deltaTime*lookSmoothRate*lookSmoothRatio);
 		//iTween.LookTo(gameObject, iTween.Hash("looktarget", targetLook , "time", 0.4f*lookSmoothRate*lookSmoothRatio, "easeType", iTween.EaseType.linear));
 	}
 
 	public void switchBody(){
 		if (!isActive) {
 			isActive = true;
+			isAllowRotate = true;
 			transform.SetParent (parent);
 		} else {
 			isActive = false;

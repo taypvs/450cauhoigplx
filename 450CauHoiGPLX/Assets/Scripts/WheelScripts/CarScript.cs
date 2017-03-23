@@ -10,8 +10,8 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	public float defaultSpeed;
 	public float turnRate;
 	public GameObject truckBody;
+	public bool isMoving;
 
-	private bool isMoving;
 	private int pointPosition;
 	private float speedRate;
 	private GameObject currentPoint;
@@ -44,6 +44,8 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 				if (currentPoint.GetComponent<TargetPoint> ().isSwitchBack)
 					switchTurnBack ();
+				if (currentPoint.GetComponent<TargetPoint> ().isSwitchFront)
+					switchTurnForward ();
 				
 				if (currentPoint.GetComponent<TargetPoint> ().isCheckPoint) {
 					pause ();
@@ -58,6 +60,10 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 					moveToNextPoint ();
 				}
 
+			}
+
+			if (currentPoint.GetComponent<TargetPoint> ().popUp!=null) {
+				currentPoint.GetComponent<TargetPoint> ().showPopup ();
 			}
 		}
 
@@ -85,16 +91,10 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 				speedChange(currentPoint.GetComponent<TargetPoint>().speed, slowCelerate);
 		}
 		if (pointPosition < targetPoint.Length) {
+			if (currentPoint!=null&&currentPoint.GetComponent<TargetPoint> ().isSwitchRotateChild)
+				truckBody.GetComponent<BoxFollow> ().switchActiveRotate ();
 			currentPoint = targetPoint [pointPosition];
-			SmoothLook (currentPoint.transform);
-//			transform.LookAt (currentPoint.transform);
-//			iTween.MoveTo (gameObject, iTween.Hash ("position", currentPoint.transform.position, 
-//													"speed", currentSpeed, 
-//													"EaseType", iTween.EaseType.linear));
-
-//			iTween.MoveUpdate (gameObject, iTween.Hash ("position", currentPoint.transform.position, "time", 1));
-
-//			transform.Translate((currentPoint.transform.position - transform.position).normalized*currentSpeed*Time.deltaTime);
+			SmoothLook (currentPoint.transform);;
 		}
 	}
 
@@ -144,8 +144,14 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		truckBody.GetComponent<BoxFollow> ().switchBackward ();
 	}
 
+	private void switchTurnForward(){
+		isBackward = false;
+		truckBody.GetComponent<BoxFollow> ().switchForward ();
+	}
+
 	IEnumerator waitForSeconds(float seconds) {
 		yield return new WaitForSeconds(seconds);
+		isMoving = true;
 		speedChange(defaultSpeed, defaultCelerate);
 	}
 

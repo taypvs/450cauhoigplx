@@ -29,4 +29,8 @@ public class BoxFollow : MonoBehaviour {
 		forwardBody.switchBody ();
 		backwardBody.switchBody ();
 	}
+
+	public void switchActiveRotate(){
+		transform.GetChild (0).GetComponent<TruckBody> ().isAllowRotate = !transform.GetChild (0).GetComponent<TruckBody> ().isAllowRotate;
+	}
 }

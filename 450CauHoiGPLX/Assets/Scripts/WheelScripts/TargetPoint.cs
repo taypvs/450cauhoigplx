@@ -9,6 +9,7 @@ public class TargetPoint : MonoBehaviour {
 	public bool isSwitchBack;
 	public bool isSwitchFront;
 	public bool isTruckTurnBack;
+	public bool isSwitchRotateChild;
 	public float speed;
 	public float waitingTime;
 	public GameObject popUp;
@@ -24,6 +25,6 @@ public class TargetPoint : MonoBehaviour {
 	}
 
 	public void showPopup(){
-		
+		popUp.SetActive (true);
 	}
 }

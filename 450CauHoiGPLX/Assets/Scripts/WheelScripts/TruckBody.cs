@@ -23,9 +23,9 @@ public class TruckBody : MonoBehaviour {
 	private float lookBackSmoothRatio;
 	// Use this for initialization
 	void Start () {
-		lookBackSmoothRatio = 2f;
+		lookBackSmoothRatio = 1f;
 		lookSmoothRatio = 0.3f;
-		wheelSpeedRatio = 8;
+		wheelSpeedRatio = 20;
 		if(isBackward)
 			forwardDirection = 1;
 		else

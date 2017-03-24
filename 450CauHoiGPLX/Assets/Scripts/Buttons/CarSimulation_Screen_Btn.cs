@@ -7,6 +7,7 @@ public class CarSimulation_Screen_Btn : MonoBehaviour {
 	public AudioSource soundStart;
 	public GameObject car1;
 	public GameObject car2;
+	public SceneLoader SceneLoader;
 	// Use this for initialization
 	void Start () {
 	
@@ -25,5 +26,9 @@ public class CarSimulation_Screen_Btn : MonoBehaviour {
 			car2.GetComponent<CarScript> ().startMoving ();
 		soundStart.Play ();
 		transform.parent.gameObject.SetActive (false);
+	}
+
+	public void onClickEndTest(){
+		SceneLoader.doLoadLevelFadeIn ("Main Scene", 255, 0.1f);
 	}
 }

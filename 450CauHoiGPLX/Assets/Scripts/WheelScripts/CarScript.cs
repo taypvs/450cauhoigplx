@@ -38,10 +38,12 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	void Update () {
 		if (currentPoint != null) {
 			if (currentPoint.GetComponent<TargetPoint> ().isTruckTurnBack && isMoving) {
-				GameObject.Find ("BackwardBody").GetComponent<TruckBody> ().backwardTarget = targetPoint [pointPosition+7];
+				GameObject.Find ("BackwardBody").GetComponent<TruckBody> ().backwardTarget = targetPoint [pointPosition+4];
 			}
 			if (CommonMethods.distanceToPoint (transform.position, currentPoint.transform.position) < 0.3f && isMoving) {
-
+				if (currentPoint.GetComponent<TargetPoint> ().popUp!=null) {
+					currentPoint.GetComponent<TargetPoint> ().showPopup ();
+				}
 				if (currentPoint.GetComponent<TargetPoint> ().isSwitchBack)
 					switchTurnBack ();
 				if (currentPoint.GetComponent<TargetPoint> ().isSwitchFront)
@@ -62,9 +64,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 			}
 
-			if (currentPoint.GetComponent<TargetPoint> ().popUp!=null) {
-				currentPoint.GetComponent<TargetPoint> ().showPopup ();
-			}
 		}
 
 		// Car driving

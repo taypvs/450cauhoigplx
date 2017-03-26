@@ -5,12 +5,15 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	public GameObject[] targetPoint;
 	public float currentSpeed;
-	public AudioSource finishSound;
 	public bool isMainCar;
 	public float defaultSpeed;
 	public float turnRate;
 	public GameObject truckBody;
 	public bool isMoving;
+	public AudioSource soundSource;
+	public AudioClip finishSound;
+	public AudioClip startEngineSound;
+	public AudioClip runEngineSound;
 
 	private int pointPosition;
 	private float speedRate;
@@ -30,6 +33,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	// Use this for initialization
 	void Start () {
+		startEngine ();
 		init ();
 //		startMoving ();
 	}
@@ -70,6 +74,10 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		if (isMoving) {
 			if(currentPoint!=null)
 				transform.Translate ((currentPoint.transform.position - transform.position).normalized * currentSpeed * speedRate * Time.deltaTime);
+			if (runEngineSound != null) {
+				Debug.Log ("Run !!! ");
+				runEngine ();
+			}
 		}
 	}
 
@@ -104,12 +112,20 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	public void stop (){
 		if(!isMainCar)
 			isMoving = false;
-		else
-			finishSound.Play ();
+		else{
+			soundSource.PlayOneShot (finishSound);
+		}
 	}
 
 	public void startEngine (){
-	
+		if (startEngineSound != null) {
+			soundSource.PlayOneShot (startEngineSound);
+		}
+	}
+
+	public void runEngine (){
+		if(runEngineSound!=null)
+			soundSource.PlayOneShot (runEngineSound);
 	}
 
 	public void speedChange (float nextSpeed, float celerate){

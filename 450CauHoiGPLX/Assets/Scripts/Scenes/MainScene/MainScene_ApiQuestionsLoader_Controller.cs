@@ -14,6 +14,7 @@ public class MainScene_ApiQuestionsLoader_Controller : MonoBehaviour {
 		PlayerPrefs.DeleteAll ();
 		Screen.fullScreen = false;
 		debugText.text = PreferencesUtils.getCurrentLevelSelected ();
+		PreferencesUtils.setCurrentLevelSelected (PreferencesUtils.LEVEL_DRIVER_TYPE_A);
 		onComplete = onCompleteApi;
 		listAllQuestionWs.initialize();
 		listAllQuestionWs.doGetListQuestion (onComplete);
@@ -28,7 +29,7 @@ public class MainScene_ApiQuestionsLoader_Controller : MonoBehaviour {
 		JSONArray jsonArray = JSONArray.Parse (listAllQuestionWs.httpApiLoader.results);
 		AllLevel allLv = new AllLevel(jsonArray);
 		debugText.text = "onCompleteApi => " + allLv.levels[0].lName;
-		PreferencesUtils.setCurrentLevelSelected ("A1");
+		PreferencesUtils.setCurrentLevelSelected (PreferencesUtils.LEVEL_DRIVER_TYPE_A);
 		//Debug.Log ("Result : " + listAllQuestionWs.httpApiLoader.results);
 	}
 }

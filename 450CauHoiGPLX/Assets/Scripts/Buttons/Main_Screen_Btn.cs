@@ -16,8 +16,10 @@ public class Main_Screen_Btn : MonoBehaviour {
 	}
 
 	public void onClickLoadCarSimulateScene(){
-		Debug.Log ("onClickLoadCarSimulateScene");
-		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("CustomDriverScene", 250, 0.3f);
+		if(PreferencesUtils.getCurrentLevelSelected().Equals(PreferencesUtils.LEVEL_DRIVER_TYPE_A))
+			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("CustomDriverScene", 250, 0.3f);
+		else if(PreferencesUtils.getCurrentLevelSelected().Equals(PreferencesUtils.LEVEL_DRIVER_TYPE_FC))
+			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("FCDriverScene", 250, 0.3f);
 	}
 
 	public void onClickLoadListTestsScene(){
@@ -28,5 +30,9 @@ public class Main_Screen_Btn : MonoBehaviour {
 	public void onClickLoadMenuScene(){
 		Debug.Log ("onClickLoadCarSimulateScene");
 		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Menu Scene", 250, 0.3f);
+	}
+
+	public void onClickMainScene(){
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Main Scene", 250, 0.3f);
 	}
 }

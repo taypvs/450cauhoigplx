@@ -17,11 +17,13 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	private int pointPosition;
 	private float speedRate;
+	private float pitchRate;
 	private GameObject currentPoint;
 	public bool isBackward;
 	private const float defaultCelerate = 1f;
 	private const float fastCelerate = 0.5f;
 	private const float slowCelerate = 1.2f;
+	private const float pitchDefault = 0.1f;
 
 	private void init(){
 		isBackward = false;
@@ -29,6 +31,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		currentSpeed = 0;
 		pointPosition = -1;
 		speedRate = 0.5f;
+		pitchRate = 0.025f;
 	}
 
 	// Use this for initialization
@@ -74,8 +77,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		if (isMoving) {
 			if(currentPoint!=null)
 				transform.Translate ((currentPoint.transform.position - transform.position).normalized * currentSpeed * speedRate * Time.deltaTime);
-			if (runEngineSound != null) {
-				Debug.Log ("Run !!! ");
+			if (runEngineSound != null && !soundSource.isPlaying) {				
 				runEngine ();
 			}
 		}
@@ -113,7 +115,8 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		if(!isMainCar)
 			isMoving = false;
 		else{
-			soundSource.PlayOneShot (finishSound);
+			if(!soundSource.isPlaying)
+				soundSource.PlayOneShot (finishSound);
 		}
 	}
 
@@ -124,8 +127,15 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	}
 
 	public void runEngine (){
-		if(runEngineSound!=null)
+		if (runEngineSound != null) {
+			Debug.Log ("Run !!! ");
 			soundSource.PlayOneShot (runEngineSound);
+			engineSoundPlay ();
+		}
+	}
+
+	private void engineSoundPlay(){
+		soundSource.pitch = pitchDefault + currentSpeed * pitchRate;
 	}
 
 	public void speedChange (float nextSpeed, float celerate){

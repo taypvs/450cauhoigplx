@@ -16,6 +16,7 @@ public class Main_Screen_Btn : MonoBehaviour {
 	}
 
 	public void onClickLoadCarSimulateScene(){
+		Debug.Log ("Current Level : " + PreferencesUtils.getCurrentLevelSelected ());
 		if(PreferencesUtils.getCurrentLevelSelected().Equals(PreferencesUtils.LEVEL_DRIVER_TYPE_A))
 			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("CustomDriverScene", 250, 0.3f);
 		else if(PreferencesUtils.getCurrentLevelSelected().Equals(PreferencesUtils.LEVEL_DRIVER_TYPE_FC))

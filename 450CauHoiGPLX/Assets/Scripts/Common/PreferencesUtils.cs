@@ -16,7 +16,6 @@ public class PreferencesUtils {
 	}
 
 	public static string getCurrentLevelSelected(){
-		
 		return PlayerPrefs.GetString (CURRENT_LEVEL_SELECTED);
 	}
 
@@ -28,8 +27,7 @@ public class PreferencesUtils {
 	}
 
 	public static string getJsonGroupQuestionsInLevel(string level){
-		string savedLevel = LEVEL_DRIVER_TYPE + level;
-		return PlayerPrefs.GetString (savedLevel);
+		return PlayerPrefs.GetString (level);
 	}
 		
 

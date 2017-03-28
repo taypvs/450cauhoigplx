@@ -77,8 +77,10 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		if (isMoving) {
 			if(currentPoint!=null)
 				transform.Translate ((currentPoint.transform.position - transform.position).normalized * currentSpeed * speedRate * Time.deltaTime);
-			if (runEngineSound != null && !soundSource.isPlaying) {				
-				runEngine ();
+			if (runEngineSound != null) {				
+				if(!soundSource.isPlaying)
+					runEngine ();
+				engineSoundPlay ();
 			}
 		}
 	}
@@ -130,7 +132,6 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		if (runEngineSound != null) {
 			Debug.Log ("Run !!! ");
 			soundSource.PlayOneShot (runEngineSound);
-			engineSoundPlay ();
 		}
 	}
 

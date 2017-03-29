@@ -11,6 +11,9 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 	public Text timeTxt;
 	public Text resultTxt;
 	public Text passTxt;
+	public Text totalTxt;
+	public Text totalRightTxt;
+	public Text totalWrongTxt;
 
 	public Sprite rightIco;
 	public Sprite wrongIco;
@@ -24,8 +27,10 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape))
+		if (Input.GetKeyDown (KeyCode.Escape)) {
 			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 230, 0.05f);
+			PreferencesUtils.clearCurrentSelectedGroupQuestion ();
+		}
 	}
 
 	private void initResults(){
@@ -51,7 +56,7 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 				newResultLayout.transform.Find("Icon").gameObject.GetComponent<Image>().sprite = rightIco;
 			else if (groupDone.questions[i].result.Equals("1"))
 				newResultLayout.transform.Find("Icon").gameObject.GetComponent<Image>().sprite = wrongIco;
-			
+			newResultLayout.GetComponent<List_Question_Result_Btn> ().index = i;
 		}
 	}
 
@@ -63,5 +68,8 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 		} else {
 			passTxt.text = "KHÔNG ĐẠT";
 		}
+		totalTxt.text = groupDone.questions.Length.ToString ();
+		totalRightTxt.text = groupDone.numQuestionRight ().ToString ();
+		totalWrongTxt.text = groupDone.numQuestionWrong ().ToString ();
 	}
 }

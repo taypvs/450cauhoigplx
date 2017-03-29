@@ -52,6 +52,7 @@
      <Compile Include="Assets\RoadTool\Scripts\RoadMath.cs" />
      <Compile Include="Assets\RoadTool\Scripts\RoadUtils.cs" />
      <Compile Include="Assets\Scripts\Buttons\CarSimulation_Screen_Btn.cs" />
+     <Compile Include="Assets\Scripts\Buttons\List_Question_Result_Btn.cs" />
      <Compile Include="Assets\Scripts\Buttons\List_Tests_Screen_Btn.cs" />
      <Compile Include="Assets\Scripts\Buttons\Main_Screen_Btn.cs" />
      <Compile Include="Assets\Scripts\Buttons\Menu_Screen_Btn.cs" />
@@ -77,6 +78,7 @@
      <Compile Include="Assets\Scripts\Scenes\Base\HeaderTitle.cs" />
      <Compile Include="Assets\Scripts\Scenes\CarSimulationScene\CarSimulate_SceneManager.cs" />
      <Compile Include="Assets\Scripts\Scenes\ListQuestionResult\ListQuestionDone_ScreenManager.cs" />
+     <Compile Include="Assets\Scripts\Scenes\ListQuestionResultDetail\ListQuestionResult_Detail_ScreenManager.cs" />
      <Compile Include="Assets\Scripts\Scenes\ListTestsScene\ListTests_Sceen_Manager.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainScene\MainScene_ApiQuestionsLoader_Controller.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainScene\MainScene_Screen_Manager.cs" />

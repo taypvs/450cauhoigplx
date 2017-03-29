@@ -9,6 +9,7 @@ public class PreferencesUtils {
 	public static string LEVEL_DRIVER_TYPE = "LEVEL_DRIVER_TYPE_";
 	public static string CURRENT_LEVEL_SELECTED = "CURRENT_LEVEL_SELECTED";
 	public static string CURRENT_GROUP_QUESTION_SELECTED = "CURRENT_GROUP_QUESTION_SELECTED";
+	public static string CURRENT_ANSWER_SELECTED = "CURRENT_ANSWER_SELECTED";
 
 	// Current selected Level in Menu 
 	public static void setCurrentLevelSelected(string value){
@@ -52,5 +53,18 @@ public class PreferencesUtils {
 
 	public static string getGroupQuestionDone(string currentGroupId){
 		return PlayerPrefs.GetString (getCurrentLevelSelected() + "_" + currentGroupId);
+	}
+
+	// Save selected Answer Index
+	public static void setCurrentAnswerNumberSelect(int index){
+		PlayerPrefs.SetInt (CURRENT_ANSWER_SELECTED, index);
+	}
+
+	public static int getCurrentAnswerNumberSelect(int index){
+		return PlayerPrefs.GetInt (CURRENT_ANSWER_SELECTED, 0);
+	}
+
+	public static void clearAnswerNumberSelect(){
+		PlayerPrefs.DeleteKey (CURRENT_ANSWER_SELECTED);
 	}
 }

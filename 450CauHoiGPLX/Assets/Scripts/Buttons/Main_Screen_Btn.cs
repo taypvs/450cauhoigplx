@@ -25,15 +25,21 @@ public class Main_Screen_Btn : MonoBehaviour {
 
 	public void onClickLoadListTestsScene(){
 		Debug.Log ("onClickLoadCarSimulateScene");
-		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 250, 0.3f);
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 250, 0.1f);
 	}
 
 	public void onClickLoadMenuScene(){
 		Debug.Log ("onClickLoadCarSimulateScene");
-		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Menu Scene", 250, 0.3f);
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Menu Scene", 250, 0.1f);
 	}
 
 	public void onClickMainScene(){
-		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Main Scene", 250, 0.3f);
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Main Scene", 250, 0.1f);
 	}
+
+	public void onClickLoadResultScene(){
+		Debug.Log ("onClickLoadCarSimulateScene");
+		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Question Result", 250, 0.1f);
+	}
+
 }

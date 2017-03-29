@@ -25,6 +25,7 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 	private void initSimulation(){
 		isTouched = false;
 		dragVerticalSmooth = 0.7f;
+		index = 0;
 		elemScreenWidth = slides.transform.GetChild (0).gameObject.GetComponent<RectTransform> ().rect.width;
 		smoothAutoDrag = 0.2f;
 		initFirstIndex ();
@@ -110,6 +111,7 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 	}
 
 	public void xChangeSmoothly (float endX_horizontal, float celerate){
+		Debug.Log ("index : " + index + " - " + endX_horizontal);
 		float startX_horizontal = slides.GetComponent<RectTransform> ().anchoredPosition.x;
 		iTween.ValueTo (gameObject, iTween.Hash("from", startX_horizontal, 
 												"to", endX_horizontal, 
@@ -140,7 +142,9 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 		slides.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (drag_x, slides.GetComponent<RectTransform> ().anchoredPosition.y);
 	}
 
-	private void initFirstIndex(){
+	public void initFirstIndex(){
+		if(elemScreenWidth == 0)
+			elemScreenWidth = slides.transform.GetChild (0).gameObject.GetComponent<RectTransform> ().rect.width;
 		index = PreferencesUtils.getCurrentAnswerNumberSelect ();
 		if(index != 0)
 			xChangeSmoothly (-elemScreenWidth * (index), smoothAutoDrag);

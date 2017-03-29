@@ -15,8 +15,7 @@ public class ListQuestionResult_Detail_ScreenManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		appBackground.transform.Find ("Header").gameObject.SetActive(false);
-		appBackground.transform.Find ("HeaderTest").gameObject.SetActive(true);
+		appBackground.transform.Find ("Header").gameObject.SetActive(true);
 		string currentSelectedGroupId = PreferencesUtils.getCurrentSelectedGroupQuestion ();
 		groupQuestion = new GroupQuestion (JSONObject.Parse (PreferencesUtils.getGroupQuestionDone (currentSelectedGroupId)));
 		initQuestionLayout ();
@@ -82,6 +81,7 @@ public class ListQuestionResult_Detail_ScreenManager : MonoBehaviour {
 		}
 
 		swipeLayout.GetComponent<RectTransform> ().sizeDelta = new Vector2 (itemPosition_X, swipeLayout.GetComponent<RectTransform> ().rect.height);
+		swipeLayout.GetComponent<TestSimulate_SwipeController> ().initFirstIndex ();
 	}
 		
 }

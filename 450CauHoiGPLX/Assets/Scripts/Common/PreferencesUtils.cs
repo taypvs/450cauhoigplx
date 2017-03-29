@@ -60,7 +60,7 @@ public class PreferencesUtils {
 		PlayerPrefs.SetInt (CURRENT_ANSWER_SELECTED, index);
 	}
 
-	public static int getCurrentAnswerNumberSelect(int index){
+	public static int getCurrentAnswerNumberSelect(){
 		return PlayerPrefs.GetInt (CURRENT_ANSWER_SELECTED, 0);
 	}
 

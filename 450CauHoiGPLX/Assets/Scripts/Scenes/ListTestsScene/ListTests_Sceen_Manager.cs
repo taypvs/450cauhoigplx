@@ -14,6 +14,7 @@ public class ListTests_Sceen_Manager : MonoBehaviour {
 	private GroupQuestion groupDone;
 	// Use this for initialization
 	void Start () {
+		PreferencesUtils.clearAnswerNumberSelect ();
 		Screen.fullScreen = false;
 		initGroupQuestions ();
 		GameObject.Find ("Header Title").GetComponent<Text>().text = "Danh sách đề thi";

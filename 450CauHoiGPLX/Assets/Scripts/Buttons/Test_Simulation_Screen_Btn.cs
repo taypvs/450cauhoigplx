@@ -8,9 +8,10 @@ public class Test_Simulation_Screen_Btn : MonoBehaviour {
 	public Answer answer;
 	public Question question;
 	public GameObject screenManager;
+	public bool isLock;
 	// Use this for initialization
 	void Start () {
-	
+		isLock = true;
 	}
 	
 	// Update is called once per frame
@@ -19,28 +20,33 @@ public class Test_Simulation_Screen_Btn : MonoBehaviour {
 	}
 
 	public void onClickSwipeToLeft(){
-		swipe.GetComponent<TestSimulate_SwipeController> ().swipeToLeft ();
+		if(!isLock)
+			swipe.GetComponent<TestSimulate_SwipeController> ().swipeToLeft ();
 	}
 
 	public void onClickSwipeToRight(){
-		swipe.GetComponent<TestSimulate_SwipeController> ().swipeToRight ();
+		if(!isLock)
+			swipe.GetComponent<TestSimulate_SwipeController> ().swipeToRight ();
 	}
 
 	public void onClickChooseAnswer(){
-		if (answer.choose.Equals ("0")) {
-			answer.choose = "1";
-			transform.Find ("Image").GetComponent<Image> ().color = Color.red;
-		} else {
-			answer.choose = "0";
-			transform.Find ("Image").GetComponent<Image> ().color = new Color32 (0, 0, 0, 0);
-		}
+		if(!isLock)
+			if (answer.choose.Equals ("0")) {
+				answer.choose = "1";
+				transform.Find ("Image").GetComponent<Image> ().color = Color.red;
+			} else {
+				answer.choose = "0";
+				transform.Find ("Image").GetComponent<Image> ().color = new Color32 (0, 0, 0, 0);
+			}
 	}
 
 	public void onClickSeeResult(){
-		screenManager.GetComponent<TestSimulate_ScreenManager> ().checkAnswer (swipe.GetComponent<TestSimulate_SwipeController> ().index);
+		if(!isLock)
+			screenManager.GetComponent<TestSimulate_ScreenManager> ().checkAnswer (swipe.GetComponent<TestSimulate_SwipeController> ().index);
 	}
 
 	public void onClickEndTest(){
-		screenManager.GetComponent<TestSimulate_ScreenManager> ().endTest ();
+		if(!isLock)
+			screenManager.GetComponent<TestSimulate_ScreenManager> ().endTest ();
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PreferencesUtils {
-	public static string LEVEL_DRIVER_TYPE_A = "LEVEL_DRIVER_TYPE_A";
+	public static string LEVEL_DRIVER_TYPE_A = "LEVEL_DRIVER_TYPE_A1";
 	public static string LEVEL_DRIVER_TYPE_B = "LEVEL_DRIVER_TYPE_B";
 	public static string LEVEL_DRIVER_TYPE_FC = "LEVEL_DRIVER_TYPE_FC";
 

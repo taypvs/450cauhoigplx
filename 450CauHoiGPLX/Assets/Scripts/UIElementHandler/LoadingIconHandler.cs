@@ -24,13 +24,11 @@ public class LoadingIconHandler : MonoBehaviour {
 	}
 
 	public void activeLoading(){
-		Debug.Log ("activeLoading");
 		gameObject.SetActive (true);
 		isLockButton = true;
 	}
 
 	public void deactiveLoading(){
-		Debug.Log ("deactiveLoading");
 		gameObject.SetActive (false);
 		isLockButton = false;
 	}

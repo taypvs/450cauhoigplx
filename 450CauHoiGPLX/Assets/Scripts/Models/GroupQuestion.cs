@@ -2,7 +2,7 @@
 using System.Collections;
 using Boomlagoon.JSON;
 
-public class GroupQuestion : MonoBehaviour {
+public class GroupQuestion {
 	
 	public string id;
 	public string gName;
@@ -58,5 +58,18 @@ public class GroupQuestion : MonoBehaviour {
 				count++;
 		}
 		return count;
+	}
+
+
+	public GroupQuestion getGroupQuestionInRange(int fromIndex, int toIndex){
+		GroupQuestion newGroupQuestion = new GroupQuestion ();
+		newGroupQuestion.gName = gName;
+		int index = 0;
+		for(int i = (fromIndex - 1 ); i < toIndex; i++){
+			Question newQuestion = questions [i];
+			newGroupQuestion.addQuestion (newQuestion, (toIndex - fromIndex + 1), index);
+			index++;
+		}
+		return newGroupQuestion;
 	}
 }

@@ -7,8 +7,10 @@ public class UtilsConstanst {
 	public static string HORIZONTAL = "HORIZONTAL"; 
 	public static string DRAG_LEFT = "DRAG_LEFT"; 
 	public static string DRAG_RIGHT = "DRAG_RIGHT"; 
+	public static float SCENE_TRANSITION_TIME = 0.6f; 
 
 	public static string API_GET_ALL_QUESTIONS = "http://camnangnguoilaixe.com/questions/public/api?cmd=get_questions"; 
+	public static string API_GET_ALL_TOPICS = "http://camnangnguoilaixe.com/questions/public/api?cmd=get_all"; 
 
 	public static string FAULT_1 = "" +
 		"1. Không thắt dây an toàn, bị trừ 05 điểm;\n\n" +

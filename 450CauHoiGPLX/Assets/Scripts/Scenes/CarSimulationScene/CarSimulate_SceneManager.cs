@@ -6,8 +6,11 @@ public class CarSimulate_SceneManager : MonoBehaviour {
 
 	public Text text;
 	public GameObject mainCar;
+	public GameObject car1;
+	public GameObject car2;
 	public GameObject sceneLoader;
 	public GameObject popupStart;
+	public GameObject popupEndTest;
 	public AudioSource soundWelcome;
 
 	// Use this for initialization
@@ -20,8 +23,12 @@ public class CarSimulate_SceneManager : MonoBehaviour {
 	void Update () {
 		text.text = mainCar.GetComponent<CarScript> ().currentSpeed.ToString() + " Km/h";
 
-		if (Input.GetKeyDown (KeyCode.Escape))
-			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("Main Scene", 230, 0.3f);
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			car1.GetComponent<CarScript> ().isMoving = false;
+			car2.GetComponent<CarScript> ().isMoving = false;
+			mainCar.GetComponent<CarScript> ().isMoving = false;
+			popupEndTest.SetActive (true);
+		}
 	}
 
 	IEnumerator sayWelcome () {

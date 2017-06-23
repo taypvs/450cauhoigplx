@@ -10,21 +10,26 @@ public class TargetPoint : MonoBehaviour {
 	public bool isSwitchFront;
 	public bool isTruckTurnBack;
 	public bool isSwitchRotateChild;
+	public bool isSwitchLight;
+
 	public float speed;
 	public float waitingTime;
+	public float switchTrafficLightTime;
 	public GameObject popUp;
+	public TrafficLightController[] trafficLight;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public string testName;
 
 	public void showPopup(){
 		popUp.SetActive (true);
+	}
+
+	public void switchLight(){
+		foreach (TrafficLightController tf in trafficLight) {
+			if(switchTrafficLightTime==0)
+				tf.switchLightAfter (1f);
+			else 
+				tf.switchLightAfter (switchTrafficLightTime);
+		}
 	}
 }

@@ -8,9 +8,10 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 	public GameObject swipeLayout;
 	public GameObject questionLayout;
 	public GameObject answerLayout;
-	public GameObject sceneLoader;
+	public SceneTransition sceneTransition;
 	public GameObject appBackground;
 	public GameObject timeManager;
+	public GameObject popUpEndTest;
 
 	private GroupQuestion groupQuestion;
 
@@ -19,6 +20,7 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 		appBackground.transform.Find ("Header").gameObject.SetActive(false);
 		appBackground.transform.Find ("HeaderTest").gameObject.SetActive(true);
 		LevelQuestion levelQuestion = new LevelQuestion (JSONObject.Parse (PreferencesUtils.getJsonGroupQuestionsInLevel(PreferencesUtils.getCurrentLevelSelected())));
+		Debug.Log ("Selected Group Question : " + PreferencesUtils.getCurrentSelectedGroupQuestion ());
 		groupQuestion = levelQuestion.getGroupQuestionById (PreferencesUtils.getCurrentSelectedGroupQuestion ());
 		initQuestionLayout ();
 		swipeLayout.GetComponent<TestSimulate_SwipeController> ().questionNumber.text = "1/" + groupQuestion.questions.Length;
@@ -27,8 +29,9 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Escape))
-			sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 230, 0.1f);
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			popUpEndTest.SetActive(true);
+		}
 	}
 
 	private void initQuestionLayout(){
@@ -47,28 +50,41 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 
 
 			// Init Text
-			newQuestion.transform.Find ("QuestionInnerLayout").Find ("Question Number Txt").GetComponent<Text> ().text = "Câu hỏi " + (i + 1);
-			newQuestion.transform.Find ("QuestionInnerLayout").Find ("Question Txt").GetComponent<Text> ().text = groupQuestion.questions[i].qName;
+			Transform questionInnerLayout = newQuestion.transform.Find ("QuestionInnerLayout").Find("Viewport").Find("Content");
 
-			GameObject currentParentLayout = newQuestion.transform.Find("QuestionInnerLayout").Find("Question Txt").gameObject;
+			questionInnerLayout.Find ("Question Number Txt").GetComponent<Text> ().text = "Câu hỏi " + (i + 1);
+			questionInnerLayout.Find ("Question Txt").GetComponent<Text> ().text = groupQuestion.questions[i].qName;
 
+			GameObject currentParentLayout = questionInnerLayout.Find("Question Txt").gameObject;
+
+			float imageHeight = 0;
+			Sprite questionSrpite = Resources.Load<Sprite>("test_" + groupQuestion.questions[i].position);
+			if(questionSrpite!=null){
+				Debug.Log ("Load questionSrpite");
+				questionInnerLayout.Find ("Question Txt").Find ("Image").gameObject.GetComponent<Image> ().sprite = questionSrpite;
+				questionInnerLayout.Find ("Question Txt").Find ("Image").gameObject.GetComponent<QuestionImageHandler> ().scaleToSprite ();
+				imageHeight = questionInnerLayout.Find ("Question Txt").Find ("Image").gameObject.GetComponent<RectTransform> ().sizeDelta.y;
+			}
 			// Init Answer
 			for (int j = 0; j < groupQuestion.questions [i].answers.Length; j++) {
+				if (j != 0 || imageHeight == 0)
+					imageHeight = -20;
+				else
+					imageHeight = -20 - imageHeight - 50;
 				GameObject newAnswerLayout = (GameObject)Instantiate (answerLayout, new Vector3(0, 0, 0), Quaternion.identity);
 				// Init Layout
 				newAnswerLayout.transform.SetParent (currentParentLayout.transform, false);
-				newAnswerLayout.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, -20);
+				newAnswerLayout.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0, imageHeight);
 				newAnswerLayout.GetComponent<RectTransform> ().anchorMin = new Vector2 (0, 0);
 				newAnswerLayout.GetComponent<RectTransform> ().anchorMax = new Vector2 (0, 0);
 
-				newAnswerLayout.transform.Find ("Text").GetComponent<Text>().text = groupQuestion.questions [i].answers[j].text;
+				newAnswerLayout.transform.Find ("Text").GetComponent<Text>().text = CommonMethods.reformatText(groupQuestion.questions [i].answers[j].text);
 				newAnswerLayout.GetComponent<Test_Simulation_Screen_Btn> ().answer = groupQuestion.questions [i].answers [j];
 
 				currentParentLayout = newAnswerLayout;
 			}
-
+			questionInnerLayout.gameObject.GetComponent<QuestionScrollContentHandler> ().calculateExpandArea ();
 		}
-
 		swipeLayout.GetComponent<RectTransform> ().sizeDelta = new Vector2 (itemPosition_X, swipeLayout.GetComponent<RectTransform> ().rect.height);
 	}
 
@@ -96,7 +112,7 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 	}
 
 	public GameObject currentQuestionLayout(int index){
-		return swipeLayout.transform.GetChild (index).Find ("QuestionInnerLayout").Find ("Question Txt").gameObject;
+		return swipeLayout.transform.GetChild (index).Find ("QuestionInnerLayout").Find("Viewport").Find("Content").Find ("Question Txt").gameObject;
 	}
 
 	public GameObject getAnswerLayoutFromIndex(GameObject parent, int index){
@@ -117,6 +133,6 @@ public class TestSimulate_ScreenManager : MonoBehaviour {
 		}
 		PreferencesUtils.saveGroupQuestionDone (groupQuestion.id, JsonParser.groupQuestionToJson(groupQuestion));
 		PreferencesUtils.clearCurrentSelectedGroupQuestion ();
-		sceneLoader.GetComponent<SceneLoader> ().doLoadLevelFadeIn ("List Tests Scene", 255, 0.1f);
+		sceneTransition.closeScene ();
 	}
 }

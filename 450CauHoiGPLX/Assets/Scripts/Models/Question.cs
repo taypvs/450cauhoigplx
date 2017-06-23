@@ -2,7 +2,7 @@
 using System.Collections;
 using Boomlagoon.JSON;
 
-public class Question : MonoBehaviour {
+public class Question {
 
 	public string id;
 	public string qName;

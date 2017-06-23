@@ -10,17 +10,15 @@ public class ListQuestionResult_Detail_ScreenManager : MonoBehaviour {
 	public GameObject answerLayout;
 	public GameObject sceneLoader;
 	public GameObject appBackground;
+	public LoadingIconHandler loadingIcon;
 
 	private GroupQuestion groupQuestion;
 
 	// Use this for initialization
 	void Start () {
+		loadingIcon.activeLoading ();
 		appBackground.transform.Find ("Header").gameObject.SetActive(true);
-		string currentSelectedGroupId = PreferencesUtils.getCurrentSelectedGroupQuestion ();
-		groupQuestion = new GroupQuestion (JSONObject.Parse (PreferencesUtils.getGroupQuestionDone (currentSelectedGroupId)));
-		initQuestionLayout ();
-		swipeLayout.GetComponent<TestSimulate_SwipeController> ().questionNumber.text = "1/" + groupQuestion.questions.Length;
-		swipeLayout.GetComponent<TestSimulate_SwipeController> ().totalQuestion = groupQuestion.questions.Length;
+		StartCoroutine (initAfter (UtilsConstanst.SCENE_TRANSITION_TIME));
 	}
 
 	// Update is called once per frame
@@ -31,7 +29,7 @@ public class ListQuestionResult_Detail_ScreenManager : MonoBehaviour {
 		}
 	}
 
-	private void initQuestionLayout(){
+	IEnumerator initQuestionLayout(){
 		float itemPosition_X = 0;
 
 		for(int i = 0; i < groupQuestion.questions.Length; i++){
@@ -47,10 +45,11 @@ public class ListQuestionResult_Detail_ScreenManager : MonoBehaviour {
 
 
 			// Init Text
-			newQuestion.transform.Find ("QuestionInnerLayout").Find ("Question Number Txt").GetComponent<Text> ().text = "Câu hỏi " + (i + 1);
-			newQuestion.transform.Find ("QuestionInnerLayout").Find ("Question Txt").GetComponent<Text> ().text = groupQuestion.questions[i].qName;
+			Transform contentLayout = newQuestion.transform.Find ("QuestionInnerLayout").Find("Viewport").Find("Content");
+			contentLayout.Find ("Question Number Txt").GetComponent<Text> ().text = "Câu hỏi " + (i + 1);
+			contentLayout.Find ("Question Txt").GetComponent<Text> ().text = groupQuestion.questions[i].qName;
 
-			GameObject currentParentLayout = newQuestion.transform.Find("QuestionInnerLayout").Find("Question Txt").gameObject;
+			GameObject currentParentLayout = contentLayout.Find("Question Txt").gameObject;
 
 			// Init Answer
 			for (int j = 0; j < groupQuestion.questions [i].answers.Length; j++) {
@@ -63,7 +62,7 @@ public class ListQuestionResult_Detail_ScreenManager : MonoBehaviour {
 				newAnswerLayout.GetComponent<RectTransform> ().anchorMax = new Vector2 (0, 0);
 				newAnswerLayout.GetComponent<Button> ().enabled = false;
 
-				newAnswerLayout.transform.Find ("Text").GetComponent<Text>().text = groupQuestion.questions [i].answers[j].text;
+				newAnswerLayout.transform.Find ("Text").GetComponent<Text>().text = CommonMethods.reformatText(groupQuestion.questions [i].answers[j].text);
 				newAnswerLayout.GetComponent<Test_Simulation_Screen_Btn> ().answer = groupQuestion.questions [i].answers [j];
 
 				currentParentLayout = newAnswerLayout;
@@ -78,10 +77,22 @@ public class ListQuestionResult_Detail_ScreenManager : MonoBehaviour {
 						newAnswerLayout.transform.Find ("Text").gameObject.GetComponent<Text> ().color = Color.red;
 			}
 
+			contentLayout.gameObject.GetComponent<QuestionScrollContentHandler> ().calculateExpandArea ();
+			yield return new WaitForSeconds(0.002f);
 		}
 
 		swipeLayout.GetComponent<RectTransform> ().sizeDelta = new Vector2 (itemPosition_X, swipeLayout.GetComponent<RectTransform> ().rect.height);
 		swipeLayout.GetComponent<TestSimulate_SwipeController> ().initFirstIndex ();
+		loadingIcon.deactiveLoading ();
+	}
+
+	IEnumerator initAfter(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		string currentSelectedGroupId = PreferencesUtils.getCurrentSelectedGroupQuestion ();
+		groupQuestion = new GroupQuestion (JSONObject.Parse (PreferencesUtils.getGroupQuestionDone (currentSelectedGroupId)));
+		StartCoroutine (initQuestionLayout ());
+		swipeLayout.GetComponent<TestSimulate_SwipeController> ().questionNumber.text = "1/" + groupQuestion.questions.Length;
+		swipeLayout.GetComponent<TestSimulate_SwipeController> ().totalQuestion = groupQuestion.questions.Length;
 	}
 		
 }

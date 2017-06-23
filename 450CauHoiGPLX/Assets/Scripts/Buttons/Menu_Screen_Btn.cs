@@ -4,7 +4,7 @@ using System.Collections;
 public class Menu_Screen_Btn : MonoBehaviour {
 
 	public Menu_Scene_Manager screenManager;
-
+	public SceneLoader sceneLoader;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,7 +12,6 @@ public class Menu_Screen_Btn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	public void doSelectedA1(){

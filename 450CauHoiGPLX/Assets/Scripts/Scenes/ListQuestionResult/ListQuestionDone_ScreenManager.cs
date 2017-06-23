@@ -17,12 +17,12 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 
 	public Sprite rightIco;
 	public Sprite wrongIco;
+
+	public LoadingIconHandler loadingIcon;
 	private GroupQuestion groupDone;
 	// Use this for initialization
 	void Start () {
-		string currentSelectedGroupId = PreferencesUtils.getCurrentSelectedGroupQuestion ();
-		groupDone = new GroupQuestion (JSONObject.Parse (PreferencesUtils.getGroupQuestionDone (currentSelectedGroupId)));
-		initResults ();
+		StartCoroutine (initAfter (UtilsConstanst.SCENE_TRANSITION_TIME));
 	}
 	
 	// Update is called once per frame
@@ -58,6 +58,15 @@ public class ListQuestionDone_ScreenManager : MonoBehaviour {
 				newResultLayout.transform.Find("Icon").gameObject.GetComponent<Image>().sprite = wrongIco;
 			newResultLayout.GetComponent<List_Question_Result_Btn> ().index = i;
 		}
+		loadingIcon.deactiveLoading ();
+	}
+
+	IEnumerator initAfter(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		string currentSelectedGroupId = PreferencesUtils.getCurrentSelectedGroupQuestion ();
+		groupDone = new GroupQuestion (JSONObject.Parse (PreferencesUtils.getGroupQuestionDone (currentSelectedGroupId)));
+		loadingIcon.activeLoading ();
+		initResults ();
 	}
 
 	private void initTopText(){

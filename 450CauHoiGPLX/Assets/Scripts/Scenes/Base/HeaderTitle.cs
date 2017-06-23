@@ -8,9 +8,5 @@ public class HeaderTitle : MonoBehaviour {
 	void Start () {
 		gameObject.GetComponent<Text>().text = "Quy trình sát hạch GPLX";
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

@@ -19,6 +19,6 @@ public class List_Question_Result_Btn : MonoBehaviour {
 
 	public void goToResultDetailsScene(){
 		PreferencesUtils.setCurrentAnswerNumberSelect (index);
-		sceneLoader.doLoadLevelFadeIn ("List Question Result Detail", 250, 0.2f);
+		sceneLoader.doLoadLevelFadeIn ("List Question Result Detail", 10, 0.01f);
 	}
 }

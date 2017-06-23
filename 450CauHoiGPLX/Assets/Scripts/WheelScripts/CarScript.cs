@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CarScript : MonoBehaviour, CarBehaviorInterface {
@@ -14,6 +15,9 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	public AudioClip finishSound;
 	public AudioClip startEngineSound;
 	public AudioClip runEngineSound;
+
+	public GameObject headMotor;
+	public Text baithiText;
 
 	private int pointPosition;
 	private float speedRate;
@@ -38,6 +42,9 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 	void Start () {
 		startEngine ();
 		init ();
+
+		Screen.orientation = ScreenOrientation.Portrait;
+
 //		startMoving ();
 	}
 	
@@ -47,7 +54,13 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 			if (currentPoint.GetComponent<TargetPoint> ().isTruckTurnBack && isMoving) {
 				GameObject.Find ("BackwardBody").GetComponent<TruckBody> ().backwardTarget = targetPoint [pointPosition+4];
 			}
+
 			if (CommonMethods.distanceToPoint (transform.position, currentPoint.transform.position) < 0.3f && isMoving) {
+
+				if (currentPoint.GetComponent<TargetPoint> ().isSwitchLight) {
+					currentPoint.GetComponent<TargetPoint> ().switchLight ();
+				}
+
 				if (currentPoint.GetComponent<TargetPoint> ().popUp!=null) {
 					currentPoint.GetComponent<TargetPoint> ().showPopup ();
 				}
@@ -66,6 +79,8 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 					StartCoroutine (waitForSeconds (currentPoint.GetComponent<TargetPoint> ().waitingTime));
 					moveToNextPoint ();
 				} else {
+					if (currentPoint.GetComponent<TargetPoint> ().testName!=null&&!currentPoint.GetComponent<TargetPoint> ().testName.Equals (""))
+						baithiText.text = currentPoint.GetComponent<TargetPoint> ().testName;
 					moveToNextPoint ();
 				}
 
@@ -83,6 +98,10 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 				engineSoundPlay ();
 			}
 		}
+	}
+
+	void OnDestroy() {
+		Screen.orientation = ScreenOrientation.AutoRotation;
 	}
 
 	public void startMoving(){
@@ -105,10 +124,17 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 			if (currentPoint!=null&&currentPoint.GetComponent<TargetPoint> ().isSwitchRotateChild)
 				truckBody.GetComponent<BoxFollow> ().switchActiveRotate ();
 			currentPoint = targetPoint [pointPosition];
-			SmoothLook (currentPoint.transform);;
+			if(pointPosition< targetPoint.Length - 1) 
+				SmoothLook (currentPoint.transform, targetPoint[pointPosition + 1].transform);
+			else
+				SmoothLook (currentPoint.transform, null);
+
 		}
 	}
 
+	public void continueMoving(float seconds){
+		StartCoroutine (continueAfterSeconds (seconds));
+	}
 
 	public void pause(){
 		isMoving = false;
@@ -117,7 +143,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		if(!isMainCar)
 			isMoving = false;
 		else{
-			if(!soundSource.isPlaying)
+			if(finishSound != null)
 				soundSource.PlayOneShot (finishSound);
 		}
 	}
@@ -126,6 +152,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		if (startEngineSound != null) {
 			soundSource.PlayOneShot (startEngineSound);
 		}
+		StartCoroutine (startAfterSeconds (2));
 	}
 
 	public void runEngine (){
@@ -154,7 +181,7 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 
 	}
 		
-	private void SmoothLook(Transform target){
+	private void SmoothLook(Transform target, Transform nextTarget){
 //		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDirection), Time.deltaTime);
 		Vector3 targetLook;
 		if (isBackward)
@@ -162,17 +189,22 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		else
 			targetLook = target.position;
 		iTween.LookTo(gameObject.transform.Find("Root").gameObject, iTween.Hash("looktarget", targetLook , "time", 0.4f*turnRate, "easeType", iTween.EaseType.linear));
+		if (headMotor != null) {
+			headMotor.GetComponent<MotoHead> ().smoothLookTo (nextTarget);
+		}
 
 	}
 
 	private void switchTurnBack(){
 		isBackward = true;
-		truckBody.GetComponent<BoxFollow> ().switchBackward ();
+		if(truckBody!=null)
+			truckBody.GetComponent<BoxFollow> ().switchBackward ();
 	}
 
 	private void switchTurnForward(){
 		isBackward = false;
-		truckBody.GetComponent<BoxFollow> ().switchForward ();
+		if(truckBody!=null)
+			truckBody.GetComponent<BoxFollow> ().switchForward ();
 	}
 
 	IEnumerator waitForSeconds(float seconds) {
@@ -181,4 +213,16 @@ public class CarScript : MonoBehaviour, CarBehaviorInterface {
 		speedChange(defaultSpeed, defaultCelerate);
 	}
 
+	IEnumerator startAfterSeconds(float seconds) {
+		yield return new WaitForSeconds(seconds);
+	}
+		
+	IEnumerator continueAfterSeconds(float seconds) {
+		yield return new WaitForSeconds(seconds);
+		isMoving = true;
+		if (currentSpeed == 0) {
+			currentSpeed = 5;
+			speedChange (currentSpeed, slowCelerate);
+		}
+	}
 }

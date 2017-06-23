@@ -26,9 +26,5 @@ public class Header : MonoBehaviour {
 
 		headerTitle.text = headerTitleTxt;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

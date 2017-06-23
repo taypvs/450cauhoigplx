@@ -7,6 +7,7 @@ public class Menu_Scene_Manager : MonoBehaviour {
 	public GameObject checkIconB1;
 	public GameObject checkIconFC;
 
+	public SceneLoader sceneLoader;
 	// Use this for initialization
 	void Start () {
 		deactiveAllCheck ();
@@ -20,7 +21,9 @@ public class Menu_Scene_Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			sceneLoader.doLoadLevelFadeIn ("Main Scene", 10, 0.01f);
+		}
 	}
 
 	public void deactiveAllCheck(){

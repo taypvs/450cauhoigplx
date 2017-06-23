@@ -72,4 +72,52 @@ public class JsonParser {
 
 		return jsonReturn;
 	}
+
+
+	//==========================
+
+	public static string contentToJson(Content content){
+		return JsonUtility.ToJson (content);
+	}
+
+	public static string smallTopicToJson(SmallTopic smallTopic){
+		string jsonReturn = "";
+		jsonReturn += 
+			"{\"id\":\"" + smallTopic.id + "\"," +
+			"\"title\":\"" + smallTopic.title + "\"," +
+			"\"position\":\"" + smallTopic.position + "\"," +
+			"\"content\":[";
+		if (smallTopic.contents != null) {
+			for (int i = 0; i < smallTopic.contents.Length; i++) {
+				jsonReturn += contentToJson (smallTopic.contents [i]);
+				if (i < (smallTopic.contents.Length - 1))
+					jsonReturn += ",";
+			}
+		}
+
+		jsonReturn += "]}";
+
+		return jsonReturn;
+	}
+
+	public static string topicToJson(Topic topic){
+		string jsonReturn = "";
+		jsonReturn += 
+			"{\"id\":\"" + topic.id + "\"," +
+			"\"name\":\"" + topic.tName + "\"," +
+			"\"position\":\"" + topic.position + "\"," +
+			"\"type_name\":\"" + topic.type_name + "\"," +
+			"\"small_topic\":[";
+		if (topic.smallTopics != null) {
+			for (int i = 0; i < topic.smallTopics.Length; i++) {
+				jsonReturn += smallTopicToJson (topic.smallTopics [i]);
+				if (i < (topic.smallTopics.Length - 1))
+					jsonReturn += ",";
+			}
+		}
+
+		jsonReturn += "]}";
+
+		return jsonReturn;
+	}
 }

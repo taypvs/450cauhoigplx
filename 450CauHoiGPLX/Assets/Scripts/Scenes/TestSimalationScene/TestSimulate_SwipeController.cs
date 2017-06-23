@@ -26,7 +26,8 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 		isTouched = false;
 		dragVerticalSmooth = 0.7f;
 		index = 0;
-		elemScreenWidth = slides.transform.GetChild (0).gameObject.GetComponent<RectTransform> ().rect.width;
+		//elemScreenWidth = slides.transform.GetChild (0).gameObject.GetComponent<RectTransform> ().rect.width;
+		elemScreenWidth = 1080;
 		smoothAutoDrag = 0.2f;
 		initFirstIndex ();
 	}
@@ -83,31 +84,31 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 
 	public void onEndTouch(){
 		isTouched = false;
-		endTouchPosition = touchPosition;
-		Debug.Log (TouchUtils.getDragHorizontalDirection(beginTouchPosition, endTouchPosition));
-		debugText.text = "Screen.width : " + Screen.width + " - Delta X :  " + (beginTouchPosition.x - endTouchPosition.x);
-		if (TouchUtils.getDragHorizontalDirection (beginTouchPosition, endTouchPosition).Equals (UtilsConstanst.DRAG_LEFT)) {
-			if (endTouchPosition.x - beginTouchPosition.x > Screen.width / 3 && index > 0) {
-				float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
-				swipeToLeft ();
-			} else {
-				xChangeSmoothly (-elemScreenWidth * (index), smoothAutoDrag);
-			}
-		} else if (TouchUtils.getDragHorizontalDirection (beginTouchPosition, endTouchPosition).Equals (UtilsConstanst.DRAG_RIGHT)) {
-			if (beginTouchPosition.x - endTouchPosition.x > Screen.width / 3 && index < (slides.transform.childCount - 1)) {
-				float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
-				swipeToRight ();
-			} else {
-				xChangeSmoothly (-elemScreenWidth * (index), smoothAutoDrag);
-			}
-		}
+//		endTouchPosition = touchPosition;
+//		Debug.Log (TouchUtils.getDragHorizontalDirection(beginTouchPosition, endTouchPosition));
+//		debugText.text = "Screen.width : " + Screen.width + " - Delta X :  " + (beginTouchPosition.x - endTouchPosition.x);
+//		if (TouchUtils.getDragHorizontalDirection (beginTouchPosition, endTouchPosition).Equals (UtilsConstanst.DRAG_LEFT)) {
+//			if (endTouchPosition.x - beginTouchPosition.x > Screen.width / 3 && index > 0) {
+//				float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
+//				swipeToLeft ();
+//			} else {
+//				xChangeSmoothly (-elemScreenWidth * (index), smoothAutoDrag);
+//			}
+//		} else if (TouchUtils.getDragHorizontalDirection (beginTouchPosition, endTouchPosition).Equals (UtilsConstanst.DRAG_RIGHT)) {
+//			if (beginTouchPosition.x - endTouchPosition.x > Screen.width / 3 && index < (slides.transform.childCount - 1)) {
+//				float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
+//				swipeToRight ();
+//			} else {
+//				xChangeSmoothly (-elemScreenWidth * (index), smoothAutoDrag);
+//			}
+//		}
 	}
 
 	public void OnDrag (PointerEventData eventData)
 	{
-		float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
-		drag_x += (eventData.delta.x)*dragVerticalSmooth;
-		slides.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (drag_x, slides.GetComponent<RectTransform> ().anchoredPosition.y);
+//		float drag_x = slides.GetComponent<RectTransform> ().anchoredPosition.x;
+//		drag_x += (eventData.delta.x)*dragVerticalSmooth;
+//		slides.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (drag_x, slides.GetComponent<RectTransform> ().anchoredPosition.y);
 	}
 
 	public void xChangeSmoothly (float endX_horizontal, float celerate){
@@ -123,14 +124,17 @@ public class TestSimulate_SwipeController : MonoBehaviour, IDragHandler {
 	public void swipeToLeft(){
 		if (index > 0) {
 			xChangeSmoothly (-elemScreenWidth * (index - 1), smoothAutoDrag);
+			debugText.text = "Screen.width : " + Screen.width + " - Change : " + (-elemScreenWidth * (index - 1));
 			index--;
 			questionNumber.text = (index + 1) + "/" + totalQuestion;
 		}
 	}
 
 	public void swipeToRight(){
+		debugText.text = "Screen.width : " + Screen.width;
 		if (index < (slides.transform.childCount - 1)) {
 			xChangeSmoothly (-elemScreenWidth * (index + 1), smoothAutoDrag);
+			debugText.text = "Screen.width : " + Screen.width + " - Change : " + (-elemScreenWidth * (index + 1));
 			index++;
 			questionNumber.text = (index + 1) + "/" + totalQuestion;
 		}
